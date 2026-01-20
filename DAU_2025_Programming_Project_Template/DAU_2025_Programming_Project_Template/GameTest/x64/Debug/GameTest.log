@@ -1,0 +1,12 @@
+﻿  stdafx.cpp
+  app.cpp
+  main.cpp
+  SimpleController.cpp
+  SimpleSound.cpp
+  SimpleSprite.cpp
+  GameTest.cpp
+  stb_image.cpp
+  Generating Code...
+  GameTest.vcxproj -> C:\Users\shane\Documents\Ubisoft_Mentorship\DAU_2025_Programming_Project_Template\DAU_2025_Programming_Project_Template\x64\Debug\GameTest.exe
+  C:\Users\shane\Documents\Ubisoft_Mentorship\DAU_2025_Programming_Project_Template\DAU_2025_Programming_Project_Template\\GameTest\glut\bin\x64\freeglut.dll
+  1 File(s) copied
