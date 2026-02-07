@@ -21,6 +21,7 @@
     <ClCompile Include="stb_image\stb_image.cpp">
       <Filter>stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -48,6 +49,7 @@
     <ClInclude Include="stb_image\stb_image.h">
       <Filter>stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">
