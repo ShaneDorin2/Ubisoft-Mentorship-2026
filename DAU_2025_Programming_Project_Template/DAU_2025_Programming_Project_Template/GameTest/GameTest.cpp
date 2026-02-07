@@ -49,7 +49,7 @@ void Init()
 	//------------------------------------------------------------------------
 
 	// My sprite code
-	placeHolderImage = App::CreateSprite(".\\TestData\\Test.bmp", 1, 1);
+	placeHolderImage = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
 	placeHolderImage->SetScale(1.0f);
 
 	// My player code
