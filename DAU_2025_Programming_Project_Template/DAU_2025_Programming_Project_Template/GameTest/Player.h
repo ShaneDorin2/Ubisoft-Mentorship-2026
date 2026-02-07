@@ -1,6 +1,16 @@
 #pragma once
 #include "app\app.h"
 
+/*
+* This class handles the player character's Position, Movement and Appearance. 
+* 
+* TO DO:
+*	- Make it inherit from a Transformable Parent-Class (that handles position, rotation and scale). 
+*	- Make it inherit a Drawable Interface containting the draw() function.
+*	- Add sprite_offset_x/y float variables that determin the position of the sprite relative to the Player's position. 
+*	- Draw a Gizmo indicating the point coordinate of the Player. (Use App::DrawLine())
+*/
+
 class Player
 {
 public:
