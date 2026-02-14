@@ -22,6 +22,7 @@
       <Filter>stb_image</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="EventManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -50,6 +51,7 @@
       <Filter>stb_image</Filter>
     </ClInclude>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="EventManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">
