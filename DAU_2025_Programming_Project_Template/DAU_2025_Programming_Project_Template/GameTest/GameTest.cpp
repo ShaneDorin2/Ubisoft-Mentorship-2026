@@ -8,8 +8,9 @@
 //------------------------------------------------------------------------
 #include "app\app.h"
 //------------------------------------------------------------------------
-#include "Player.h"
 #include <iostream>
+#include "Player.h"
+#include "EventManager.h"
 //------------------------------------------------------------------------
 // Eample data....
 //------------------------------------------------------------------------
@@ -24,6 +25,7 @@ enum
 //------------------------------------------------------------------------
 // My data
 CSimpleSprite* placeHolderImage;
+EventManager* eventManager;
 Player* player;
 
 // My input data
@@ -51,6 +53,9 @@ void Init()
 	// My sprite code
 	placeHolderImage = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
 	placeHolderImage->SetScale(1.0f);
+
+	// My event manager code 
+	eventManager = new EventManager();
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);
