@@ -25,7 +25,7 @@ enum
 //------------------------------------------------------------------------
 // My data
 CSimpleSprite* placeHolderImage;
-EventManager* eventManager;
+sEventManager* eventManager; // singleton
 Player* player;
 
 // My input data
@@ -55,7 +55,7 @@ void Init()
 	placeHolderImage->SetScale(1.0f);
 
 	// My event manager code 
-	eventManager = new EventManager();
+	eventManager = sEventManager::GetInstance(); // "GetInstance()" because it is a singleton. 
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);

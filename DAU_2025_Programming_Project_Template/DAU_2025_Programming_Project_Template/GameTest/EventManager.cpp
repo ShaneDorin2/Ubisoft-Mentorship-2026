@@ -1,16 +1,24 @@
 #include "stdafx.h"
 #include "EventManager.h"
 
-EventManager::EventManager()
+sEventManager::sEventManager()
 {
 }
 
-EventManager::~EventManager()
+sEventManager::~sEventManager()
 {
 	// Do i have anything to deleit here ? 
 }
 
-void EventManager::subscribeTo(eEvent event_id, ActionFunctionType subsctiber)
+sEventManager* sEventManager::GetInstance()
+{
+	if (event_manager_single_instance == nullptr) {
+		event_manager_single_instance = new sEventManager();
+	}
+	return event_manager_single_instance;
+}
+
+void sEventManager::subscribeTo(eEvent event_id, ActionFunctionType subsctiber)
 {
 	// if Event ID is not already present in the event_library, add it. 
 	if (event_library.count(event_id) == 0) {
@@ -20,7 +28,7 @@ void EventManager::subscribeTo(eEvent event_id, ActionFunctionType subsctiber)
 	event_library[event_id].push_back(subsctiber);
 }
 
-void EventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType subsctiber)
+void sEventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType subsctiber)
 {
 	// remove subscribed function from event's vector. 
 	auto it = std::find(event_library[event_id].begin(), event_library[event_id].end(), subsctiber);
@@ -35,7 +43,7 @@ void EventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType subsctibe
 	}
 }
 
-void EventManager::trigger(eEvent event_id)
+void sEventManager::trigger(eEvent event_id)
 {
 	if (event_library.count(event_id) == 0) {
 		// this event has no subscribers. 

@@ -8,18 +8,29 @@
 * All Events in this game are DECLARED, STORED and TRIGGERED here. 
 *
 * Only one EventManager exists in the game. (Does that mean it's called a singlton ?)
+* Implemented "Naive Singlton" (not thread-safe) using this example : https://refactoring.guru/design-patterns/singleton/cpp/example#example-0
+* 
+* // Singlton classes are named with an "s" at the begining. 
 * 
 */
-class EventManager
+class sEventManager 
 {
-public:
+protected: 
+
 	// constructors and destructors 
-	EventManager();
-	~EventManager();
+	sEventManager();
+	~sEventManager();
+
+	static sEventManager* event_manager_single_instance; // stores the singlton pointer
+
+
+public:
 
 	// "rule of threes"
-	EventManager(const EventManager&) = delete;
-	EventManager& operator=(const EventManager&) = delete;
+	sEventManager(const sEventManager&) = delete;
+	sEventManager& operator=(const sEventManager&) = delete;
+
+	static sEventManager* GetInstance(); // offeres access to the singlton
 
 	// ----------------------------------------------------------------------------------------------------------------------------------
 
