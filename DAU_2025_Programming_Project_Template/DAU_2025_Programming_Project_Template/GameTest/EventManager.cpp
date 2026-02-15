@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "EventManager.h"
 
+sEventManager* sEventManager::event_manager_single_instance = nullptr;
+
 sEventManager::sEventManager()
 {
 }
@@ -10,7 +12,7 @@ sEventManager::~sEventManager()
 	// Do i have anything to deleit here ? 
 }
 
-sEventManager* sEventManager::GetInstance()
+sEventManager* sEventManager::getInstance()
 {
 	if (event_manager_single_instance == nullptr) {
 		event_manager_single_instance = new sEventManager();
@@ -18,17 +20,17 @@ sEventManager* sEventManager::GetInstance()
 	return event_manager_single_instance;
 }
 
-void sEventManager::subscribeTo(eEvent event_id, ActionFunctionType subsctiber)
+void sEventManager::subscribeTo(eEvent event_id, ActionFunctionType* subsctiber)
 {
 	// if Event ID is not already present in the event_library, add it. 
 	if (event_library.count(event_id) == 0) {
-		event_library.insert(std::pair<eEvent, std::vector<ActionFunctionType>>(event_id, std::vector<ActionFunctionType>()));
+		event_library.insert(std::pair<eEvent, std::vector<ActionFunctionType*>>(event_id, std::vector<ActionFunctionType*>()));
 	}
 
 	event_library[event_id].push_back(subsctiber);
 }
 
-void sEventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType subsctiber)
+void sEventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType* subsctiber)
 {
 	// remove subscribed function from event's vector. 
 	auto it = std::find(event_library[event_id].begin(), event_library[event_id].end(), subsctiber);
@@ -51,8 +53,8 @@ void sEventManager::trigger(eEvent event_id)
 		return;
 	}
 
-	for (ActionFunctionType subscriber : event_library[event_id]) {
-		subscriber();
+	for (ActionFunctionType* subscriber : event_library[event_id]) {
+		(*subscriber)();
 	}
 }
  

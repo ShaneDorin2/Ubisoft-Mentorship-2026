@@ -1,5 +1,6 @@
 #pragma once
 #include "app\app.h"
+#include "functional"
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 
@@ -26,6 +27,7 @@ public:
 	// transform
 	// should I create a Transform-able parent class objects with positions, scales and rotations ? 
 	void updatePosition(float& deltaTime);
+	void updateVelcity();
 	void setVelcity(float new_x, float new_y);
 	void setPosition(float new_x, float new_y);
 
@@ -47,4 +49,26 @@ private:
 
 	// helper functions 
 	void normalizeVector(float& x, float& y);
+
+	// -----------------------------------------------------------------------------------------
+	// directional input
+	// can come from user controls or scripted movements. 
+
+	// "in_" means that these are values that 'come from' outside of the class. 
+	// in this case, they are modified by the user input event subscribers. 
+	float in_direction_input_x = 0;
+	float in_direction_input_y = 0;
+
+	// Event subscribers
+	void onUpInput();
+	std::function<void()> onUpInputLambda; // i KINDA remember how lambda's work. 
+
+	void onDownInput();
+	std::function<void()> onDownInputLambda;
+
+	void onRightInput();
+	std::function<void()> onRightInputLambda;
+
+	void onLeftInput();
+	std::function<void()> onLeftInputLambda;
 };

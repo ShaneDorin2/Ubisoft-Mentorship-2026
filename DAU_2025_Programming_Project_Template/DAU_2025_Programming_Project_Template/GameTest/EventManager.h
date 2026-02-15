@@ -30,7 +30,7 @@ public:
 	sEventManager(const sEventManager&) = delete;
 	sEventManager& operator=(const sEventManager&) = delete;
 
-	static sEventManager* GetInstance(); // offeres access to the singlton
+	static sEventManager* getInstance(); // offeres access to the singlton
 
 	// ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -48,14 +48,15 @@ public:
 	// ----------------------------------------------------------------------------------------------------------------------------------
 	// public functions
 
-	void subscribeTo(eEvent event_id, ActionFunctionType subsctiber);
-	void unSubscribeFrom(eEvent event_id, ActionFunctionType subsctiber);
+	void subscribeTo(eEvent event_id, ActionFunctionType* subsctiber);
+	void unSubscribeFrom(eEvent event_id, ActionFunctionType* subsctiber);
 	void trigger(eEvent event_id);
 	// note that there is no "createNewEvent()" fucntion. For the sake of organisation, all events will be created in this class (via the eEvent enum)
 
 private:
 
-	std::unordered_map < eEvent, std::vector<ActionFunctionType> > event_library;
+	std::unordered_map < eEvent, std::vector<ActionFunctionType*> > event_library;
+	// turns out I can't compare ActionFunctionTypes but I CAN compare their POINTERS !
 
 };
 

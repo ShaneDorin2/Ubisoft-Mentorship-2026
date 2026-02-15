@@ -25,7 +25,7 @@ enum
 //------------------------------------------------------------------------
 // My data
 CSimpleSprite* placeHolderImage;
-sEventManager* eventManager; // singleton
+sEventManager* event_manager; // singleton
 Player* player;
 
 // My input data
@@ -55,7 +55,7 @@ void Init()
 	placeHolderImage->SetScale(1.0f);
 
 	// My event manager code 
-	eventManager = sEventManager::GetInstance(); // "GetInstance()" because it is a singleton. 
+	event_manager = sEventManager::getInstance(); // "GetInstance()" because it is a singleton. 
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);
@@ -127,25 +127,21 @@ void Update(float deltaTime)
 	//------------------------------------------------------------------------
 	// My sprite code
 
-	// update input data
-	horizontalInput = 0;
-	verticalInput = 0;
-
 	if (App::GetController().GetLeftThumbStickX() > 0.5f)
 	{
-		horizontalInput += 1;
+		event_manager->trigger(event_manager->RIGHT_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickX() < -0.5f)
 	{
-		horizontalInput -= 1;
+		event_manager->trigger(event_manager->LEFT_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickY() > 0.5f)
 	{
-		verticalInput -= 1;
+		event_manager->trigger(event_manager->UP_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickY() < -0.5f)
 	{
-		verticalInput += 1;
+		event_manager->trigger(event_manager->DOWN_INPUT);
 	}
 
 	// this does not work because this is a Windows app and not a Consol app. what is the difference ? 
@@ -157,7 +153,7 @@ void Update(float deltaTime)
 
 
 	// apply input data
-	player->setVelcity(horizontalInput, verticalInput);
+	player->updateVelcity();
 
 	// update player position
 	player->updatePosition(deltaTime);
