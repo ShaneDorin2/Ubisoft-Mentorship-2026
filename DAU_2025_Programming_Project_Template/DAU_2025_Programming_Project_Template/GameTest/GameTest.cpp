@@ -25,7 +25,6 @@ enum
 //------------------------------------------------------------------------
 // My data
 CSimpleSprite* placeHolderImage;
-sEventManager* event_manager; // singleton
 Player* player;
 
 // My input data
@@ -55,7 +54,7 @@ void Init()
 	placeHolderImage->SetScale(1.0f);
 
 	// My event manager code 
-	event_manager = sEventManager::getInstance(); // "GetInstance()" because it is a singleton. 
+	sEventManager::createInstance(); // "GetInstance()" because it is a singleton. 
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);
@@ -126,22 +125,23 @@ void Update(float deltaTime)
 	//}
 	//------------------------------------------------------------------------
 	// My sprite code
+	sEventManager* event_manager = sEventManager::getInstance();
 
 	if (App::GetController().GetLeftThumbStickX() > 0.5f)
 	{
-		event_manager->trigger(event_manager->RIGHT_INPUT);
+		event_manager->trigger(eEvent::RIGHT_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickX() < -0.5f)
 	{
-		event_manager->trigger(event_manager->LEFT_INPUT);
+		event_manager->trigger(eEvent::LEFT_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickY() > 0.5f)
 	{
-		event_manager->trigger(event_manager->UP_INPUT);
+		event_manager->trigger(eEvent::UP_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickY() < -0.5f)
 	{
-		event_manager->trigger(event_manager->DOWN_INPUT);
+		event_manager->trigger(eEvent::DOWN_INPUT);
 	}
 
 	// this does not work because this is a Windows app and not a Consol app. what is the difference ? 
@@ -215,4 +215,5 @@ void Shutdown()
 	// Example Sprite Code....
 	delete testSprite;
 	//------------------------------------------------------------------------
+	sEventManager::destroyInstance();
 }

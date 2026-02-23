@@ -10,30 +10,42 @@ sEventManager::sEventManager()
 sEventManager::~sEventManager()
 {
 	// Do i have anything to deleit here ? 
+	assert(event_library.empty());
+	event_library.clear();
+}
+
+void sEventManager::createInstance()
+{
+	assert(event_manager_single_instance == nullptr);
+	event_manager_single_instance = new sEventManager();
+}
+
+void sEventManager::destroyInstance()
+{
+	assert(event_manager_single_instance != nullptr);
+	delete event_manager_single_instance;
 }
 
 sEventManager* sEventManager::getInstance()
 {
-	if (event_manager_single_instance == nullptr) {
-		event_manager_single_instance = new sEventManager();
-	}
+	assert(event_manager_single_instance != nullptr);
 	return event_manager_single_instance;
 }
 
-void sEventManager::subscribeTo(eEvent event_id, ActionFunctionType* subsctiber)
+void sEventManager::subscribeTo(eEvent event_id, ActionFunctionType* subscriber)
 {
 	// if Event ID is not already present in the event_library, add it. 
 	if (event_library.count(event_id) == 0) {
 		event_library.insert(std::pair<eEvent, std::vector<ActionFunctionType*>>(event_id, std::vector<ActionFunctionType*>()));
 	}
 
-	event_library[event_id].push_back(subsctiber);
+	event_library[event_id].push_back(subscriber);
 }
 
-void sEventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType* subsctiber)
+void sEventManager::unSubscribeFrom(eEvent event_id, ActionFunctionType* subscriber)
 {
 	// remove subscribed function from event's vector. 
-	auto it = std::find(event_library[event_id].begin(), event_library[event_id].end(), subsctiber);
+	auto it = std::find(event_library[event_id].begin(), event_library[event_id].end(), subscriber);
 	if (it != event_library[event_id].end())
 	{
 		event_library[event_id].erase(it);

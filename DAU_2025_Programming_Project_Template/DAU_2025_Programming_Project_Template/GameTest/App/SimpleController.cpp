@@ -60,7 +60,7 @@ void CSimpleControllers::Update()
 		m_Controllers[0].m_state.Gamepad.sThumbRX = 0;
 		m_Controllers[0].m_state.Gamepad.sThumbRY = 0;
 		m_Controllers[0].m_state.Gamepad.bLeftTrigger = 0;
-		m_Controllers[0].m_state.Gamepad.bRightTrigger = 0;		
+		m_Controllers[0].m_state.Gamepad.bRightTrigger = 0;
 
 		if (App::IsKeyPressed(APP_PAD_EMUL_LEFT_THUMB_LEFT)) m_Controllers[0].m_state.Gamepad.sThumbLX = -32767;
 		if (App::IsKeyPressed(APP_PAD_EMUL_LEFT_THUMB_RIGHT)) m_Controllers[0].m_state.Gamepad.sThumbLX = 32767;
