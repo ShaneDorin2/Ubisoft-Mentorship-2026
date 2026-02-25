@@ -80,7 +80,7 @@ void Player::draw()
 	sprite->Draw();
 }
 
-void Player::updateVelcity() {
+void Player::updateVelocity() {
 
 	x_velocity = in_direction_input_x;
 	y_velocity = in_direction_input_y;
@@ -90,16 +90,16 @@ void Player::updateVelcity() {
 	in_direction_input_y = 0;
 }
 
-void Player::setVelcity(float new_x, float new_y) {
+void Player::setVelocity(float new_x, float new_y) {
 
 	x_velocity = new_x;
 	y_velocity = new_y;
 	normalizeVector(x_velocity, y_velocity);
 }
 
-void Player::updatePosition(float& deltaTime) {
-	x_pos += x_velocity * deltaTime;
-	y_pos += y_velocity * deltaTime;
+void Player::updatePosition(float& delta_time) {
+	x_pos += x_velocity * delta_time;
+	y_pos += y_velocity * delta_time;
 
 	sprite->SetPosition(x_pos, y_pos);
 }

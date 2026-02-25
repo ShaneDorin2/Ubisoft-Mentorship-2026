@@ -26,32 +26,37 @@ public:
 
 	// transform
 	// should I create a Transform-able parent class objects with positions, scales and rotations ? 
-	void updatePosition(float& deltaTime);
-	void updateVelcity();
-	void setVelcity(float new_x, float new_y);
+	void updatePosition(float& delta_time);
+	void updateVelocity();
+	void setVelocity(float new_x, float new_y);
 	void setPosition(float new_x, float new_y);
 
 	void draw(); // TODO : make this into an Interface for all draw-able objects.
 
-private:
+private: // logic
+
+	// helper functions 
+	void normalizeVector(float& x, float& y);
+
+	// Event subscribers
+	void onUpInput();
+	void onDownInput();
+	void onRightInput();
+	void onLeftInput();
+
+private: // memeory
+
 	float x_pos;
 	float y_pos;
 
 	float x_velocity = 0;
 	float y_velocity = 0;
 
-	// should I make my SimpleSprite pointers inot uneaque_ptr ? 
-
 	// this spright will be used in the absence of a provided spright refernece. 
 	CSimpleSprite* default_sprite;
-
 	CSimpleSprite* sprite;
 
-	// helper functions 
-	void normalizeVector(float& x, float& y);
-
-	// -----------------------------------------------------------------------------------------
-	// directional input
+private: // directional input memory
 	// can come from user controls or scripted movements. 
 
 	// "in_" means that these are values that 'come from' outside of the class. 
@@ -60,15 +65,9 @@ private:
 	float in_direction_input_y = 0;
 
 	// Event subscribers
-	void onUpInput();
 	std::function<void()> onUpInputLambda; // i KINDA remember how lambda's work. 
-
-	void onDownInput();
 	std::function<void()> onDownInputLambda;
-
-	void onRightInput();
 	std::function<void()> onRightInputLambda;
-
-	void onLeftInput();
 	std::function<void()> onLeftInputLambda;
+
 };

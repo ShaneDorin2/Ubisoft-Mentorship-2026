@@ -5,9 +5,9 @@
 #include <string>
 
 /* EVENT MANAGER
-* All Events in this game are DECLARED, STORED and TRIGGERED here. 
+* All Events in the game are DECLARED, STORED and TRIGGERED here. 
 *
-* Only one EventManager exists in the game. (Does that mean it's called a singlton ?)
+* sEventManager is a Singleton. Only one EventManager exists in the game.
 * Implemented "Naive Singlton" (not thread-safe) using this example : https://refactoring.guru/design-patterns/singleton/cpp/example#example-0
 * 
 * // Singlton classes are named with an "s" at the begining. 
@@ -15,16 +15,20 @@
 */
 class sEventManager 
 {
-protected: 
+public: // definitions
+	using ActionFunctionType = std::function<void()>; // a function type that has no parrameter and returns void. 
 
-	// constructors and destructors 
-	sEventManager();
-	~sEventManager();
+	enum eEvent // all events existing in the project are named in this Enume. 
+		// TODO: move eEvent to its own file. 
+	{
+		// input events
+		UP_INPUT,
+		DOWN_INPUT,
+		RIGHT_INPUT,
+		LEFT_INPUT
+	};
 
-	static sEventManager* event_manager_single_instance; // stores the singlton pointer
-
-
-public:
+public: // logic
 
 	// "rule of threes"
 	sEventManager(const sEventManager&) = delete;
@@ -32,28 +36,19 @@ public:
 
 	static sEventManager* getInstance(); // offeres access to the singlton
 
-	// ----------------------------------------------------------------------------------------------------------------------------------
-
-	using ActionFunctionType = std::function<void()>; // a function type that has no parrameter and returns void. 
-
-	enum eEvent // all events existing in the project are named in this Enume. 
-	{
-		// input events
-		UP_INPUT, 
-		DOWN_INPUT,
-		RIGHT_INPUT, 
-		LEFT_INPUT
-	};
-
-	// ----------------------------------------------------------------------------------------------------------------------------------
-	// public functions
-
 	void subscribeTo(eEvent event_id, ActionFunctionType* subsctiber);
 	void unSubscribeFrom(eEvent event_id, ActionFunctionType* subsctiber);
 	void trigger(eEvent event_id);
 	// note that there is no "createNewEvent()" fucntion. For the sake of organisation, all events will be created in this class (via the eEvent enum)
 
-private:
+private: // constructors and destructors 
+	
+	sEventManager();
+	~sEventManager();
+
+private: // memory
+
+	static sEventManager* event_manager_single_instance; // stores the singlton pointer
 
 	std::unordered_map < eEvent, std::vector<ActionFunctionType*> > event_library;
 	// turns out I can't compare ActionFunctionTypes but I CAN compare their POINTERS !

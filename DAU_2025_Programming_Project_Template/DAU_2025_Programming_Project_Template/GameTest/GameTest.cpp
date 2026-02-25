@@ -153,7 +153,7 @@ void Update(float deltaTime)
 
 
 	// apply input data
-	player->updateVelcity();
+	player->updateVelocity();
 
 	// update player position
 	player->updatePosition(deltaTime);
