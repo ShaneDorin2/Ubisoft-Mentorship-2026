@@ -53,7 +53,6 @@ private: // memeory
 	float y_velocity = 0;
 
 	// this spright will be used in the absence of a provided spright refernece. 
-	CSimpleSprite* default_sprite;
 	CSimpleSprite* sprite;
 
 private: // directional input memory

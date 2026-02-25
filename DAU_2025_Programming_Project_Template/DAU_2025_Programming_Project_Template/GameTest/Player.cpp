@@ -4,10 +4,9 @@
 #include "EventManager.h"
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
-	x_pos(start_x_pos), y_pos(start_y_pos)
+	x_pos(start_x_pos), y_pos(start_y_pos), sprite(sprite_ptr)
 {
-	default_sprite = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	sprite = (sprite_ptr == nullptr) ? default_sprite : sprite_ptr;
+	// TO DO asset that sprite_ptr is not nullptr.
 
 	sprite->SetPosition(x_pos, y_pos);
 	
@@ -43,7 +42,6 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 Player::~Player()
 {
 	delete sprite;
-	delete default_sprite;
 
 	// unsubscribe from events
 	sEventManager* event_manager = sEventManager::getInstance();
