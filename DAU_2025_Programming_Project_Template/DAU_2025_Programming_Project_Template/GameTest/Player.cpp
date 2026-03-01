@@ -8,6 +8,8 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 {
 	// TO DO asset that sprite_ptr is not nullptr.
 
+	assert(sprinte != nullptr);
+
 	sprite->SetPosition(x_pos, y_pos);
 	
 

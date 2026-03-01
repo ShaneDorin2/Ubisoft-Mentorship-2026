@@ -182,6 +182,7 @@
     <ClInclude Include="App\SimpleController.h" />
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
+    <ClInclude Include="Assert.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="stb_image\stb_image.h" />

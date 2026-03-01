@@ -52,6 +52,7 @@
     </ClInclude>
     <ClInclude Include="Player.h" />
     <ClInclude Include="EventManager.h" />
+    <ClInclude Include="Assert.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">
