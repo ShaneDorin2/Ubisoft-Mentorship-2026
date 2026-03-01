@@ -185,6 +185,7 @@
     <ClInclude Include="Assert.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Positionable.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -198,6 +199,7 @@
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Positionable.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -23,6 +23,7 @@
     </ClCompile>
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="Positionable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -53,6 +54,7 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="Assert.h" />
+    <ClInclude Include="Positionable.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">

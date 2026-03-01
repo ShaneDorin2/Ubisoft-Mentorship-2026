@@ -4,12 +4,10 @@
 #include "EventManager.h"
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
-	x_pos(start_x_pos), y_pos(start_y_pos), sprite(sprite_ptr)
+	sprite(sprite_ptr), 
+	Positionable(start_x_pos, start_y_pos)
 {
-	// TO DO asset that sprite_ptr is not nullptr.
-
 	assert(sprinte != nullptr);
-
 	sprite->SetPosition(x_pos, y_pos);
 	
 
@@ -67,12 +65,6 @@ Player::~Player()
 		event_manager->LEFT_INPUT,
 		&onLeftInputLambda
 	);
-}
-
-void Player::setPosition(float new_x, float new_y) {
-	x_pos = new_x;
-	y_pos = new_y;
-	sprite->SetPosition(x_pos, y_pos);
 }
 
 void Player::draw()
