@@ -1,19 +1,18 @@
 #pragma once
 #include "app\app.h"
 #include "functional"
-#include "Positionable.h"
+#include "Movable.h"
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 
 * 
 * TO DO:
-*	- Make it inherit from a Transformable Parent-Class (that handles position, rotation and scale). 
 *	- Make it inherit a Drawable Interface containting the draw() function.
 *	- Add sprite_offset_x/y float variables that determin the position of the sprite relative to the Player's position. 
 *	- Draw a Gizmo indicating the point coordinate of the Player. (Use App::DrawLine())
 */
 
-class Player : public Positionable
+class Player : public Movable
 {
 public:
 	// constructor 
@@ -26,17 +25,13 @@ public:
 
 
 	// transform
-	// should I create a Transform-able parent class objects with positions, scales and rotations ? 
-	void updatePosition(float& delta_time);  //controllable
-	void updateVelocity(); //controllable
-	void setVelocity(float new_x, float new_y); //controllable
+	void updateVelocity(); //player
+	void updatePosition(float& delta_time) override;
 
 	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
 
 private: // logic
 
-	// helper functions 
-	void normalizeVector(float& x, float& y); 
 
 	// Event subscribers
 	void onUpInput(); //Player
@@ -45,9 +40,6 @@ private: // logic
 	void onLeftInput(); //Player
 
 private: // memeory
-
-	float x_velocity = 0; //controlable
-	float y_velocity = 0;
 
 	// this spright will be used in the absence of a provided spright refernece. 
 	CSimpleSprite* sprite; //Drawable

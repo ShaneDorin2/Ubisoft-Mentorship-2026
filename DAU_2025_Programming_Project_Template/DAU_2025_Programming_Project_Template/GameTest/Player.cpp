@@ -5,7 +5,7 @@
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
-	Positionable(start_x_pos, start_y_pos)
+	Movable(start_x_pos, start_y_pos)
 {
 	assert(sprinte != nullptr);
 	sprite->SetPosition(x_pos, y_pos);
@@ -72,40 +72,20 @@ void Player::draw()
 	sprite->Draw();
 }
 
-void Player::updateVelocity() {
+void Player::updateVelocity() { // SETS VELOCITY BASED ON INPUT VALUES
 
-	x_velocity = in_direction_input_x;
-	y_velocity = in_direction_input_y;
-	normalizeVector(x_velocity, y_velocity);
+	setVelocity(in_direction_input_x, in_direction_input_y);
 
 	in_direction_input_x = 0;
 	in_direction_input_y = 0;
 }
 
-void Player::setVelocity(float new_x, float new_y) {
+void Player::updatePosition(float& delta_time)
+{
+	Movable::updatePosition(delta_time);
 
-	x_velocity = new_x;
-	y_velocity = new_y;
-	normalizeVector(x_velocity, y_velocity);
+	sprite->SetPosition(x_pos, y_pos); 
 }
-
-void Player::updatePosition(float& delta_time) {
-	x_pos += x_velocity * delta_time;
-	y_pos += y_velocity * delta_time;
-
-	sprite->SetPosition(x_pos, y_pos);
-}
-
-// Would it be easyer for me if I create a Vector2 class ? 
-void Player::normalizeVector(float& x, float& y) {
-	if (x == 0 && y == 0) return;
-
-	// divide x and y by the magnitude (aka, the hypotinuse/distance)
-	float magnitude = sqrtf(powf(abs(x), 2) + powf(abs(y), 2)); // pythagoras theorem 
-	x /= magnitude;
-	y /= magnitude;
-}
-
 
 // event subscribers
 

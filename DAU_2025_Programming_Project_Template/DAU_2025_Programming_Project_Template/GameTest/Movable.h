@@ -1,0 +1,33 @@
+#pragma once
+#include "Positionable.h"
+
+// Moveable: Base class for objects that "move" (theu 2D positions change over time). 
+
+class Movable : public Positionable
+{
+public : // logic
+
+	virtual void updatePosition(float& delta_time);
+
+protected : // constructor 
+
+	Movable(float start_x_pos = 0, float start_y_pos = 0);
+
+	// "rule of threes"
+	Movable(const Movable&) = delete;
+	Movable& operator=(const Movable&) = delete;
+
+protected : // logic
+
+	void setVelocity(float new_x, float new_y);
+
+protected: // memory
+
+	float x_velocity = 0; 
+	float y_velocity = 0;
+
+private : // logic
+
+	void normalizeVector(float& x, float& y);
+};
+

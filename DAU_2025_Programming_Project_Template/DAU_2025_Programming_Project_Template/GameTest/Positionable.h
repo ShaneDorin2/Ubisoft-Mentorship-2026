@@ -1,10 +1,10 @@
 #pragma once
 
-// Positionable class parents object that have a 2D postions. 
+// Positionable: Base class for objects that have a 2D position. 
 
 class Positionable
 {
-public: //contructors
+protected: //contructors
 
 	Positionable(float start_x = 0, float start_y = 0);
 
