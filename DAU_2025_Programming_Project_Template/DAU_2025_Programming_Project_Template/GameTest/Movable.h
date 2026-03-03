@@ -3,6 +3,11 @@
 
 // Moveable: Base class for objects that "move" (theu 2D positions change over time). 
 
+/*
+* TO DO:
+* allow for the handling of Skacle and Rotation. 
+*/
+
 class Movable : public Positionable
 {
 public : // logic

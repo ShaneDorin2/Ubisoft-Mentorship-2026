@@ -72,7 +72,7 @@ void Player::draw()
 	sprite->Draw();
 }
 
-void Player::updateVelocity() { // SETS VELOCITY BASED ON INPUT VALUES
+void Player::updateVelocity() { 
 
 	setVelocity(in_direction_input_x, in_direction_input_y);
 

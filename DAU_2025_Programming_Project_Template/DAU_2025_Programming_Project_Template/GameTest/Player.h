@@ -5,6 +5,9 @@
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 
+* inputs:
+*	- verical & horisontal direction (via events)
+*
 * 
 * TO DO:
 *	- Make it inherit a Drawable Interface containting the draw() function.
@@ -14,8 +17,8 @@
 
 class Player : public Movable
 {
-public:
-	// constructor 
+public: // constructor
+
 	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = nullptr);
 	~Player();
 
@@ -23,33 +26,30 @@ public:
 	Player(const Player&) = delete;
 	Player& operator=(const Player&) = delete;
 
+public: // logic
 
-	// transform
-	void updateVelocity(); //player
+	void updateVelocity(); 
 	void updatePosition(float& delta_time) override;
 
 	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
 
 private: // logic
 
-
 	// Event subscribers
-	void onUpInput(); //Player
-	void onDownInput(); //Player
-	void onRightInput(); //Player
-	void onLeftInput(); //Player
+	void onUpInput(); 
+	void onDownInput(); 
+	void onRightInput(); 
+	void onLeftInput(); 
 
 private: // memeory
 
-	// this spright will be used in the absence of a provided spright refernece. 
-	CSimpleSprite* sprite; //Drawable
+	CSimpleSprite* sprite; 
 
-private: // directional input memory
-	// can come from user controls or scripted movements. 
+private: // input memory
 
 	// "in_" means that these are values that 'come from' outside of the class. 
 	// in this case, they are modified by the user input event subscribers. 
-	float in_direction_input_x = 0; // Player
+	float in_direction_input_x = 0; 
 	float in_direction_input_y = 0;
 
 	// Event subscribers -- Player
