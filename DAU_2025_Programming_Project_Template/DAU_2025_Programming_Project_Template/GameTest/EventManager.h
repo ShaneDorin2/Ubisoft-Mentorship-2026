@@ -34,7 +34,8 @@ public: // logic
 	sEventManager(const sEventManager&) = delete;
 	sEventManager& operator=(const sEventManager&) = delete;
 
-	static sEventManager* getInstance(); // offeres access to the singlton
+	static void createInstance(); 
+	static sEventManager* getInstance(); // offeres access to the singlton instance
 
 	void subscribeTo(eEvent event_id, ActionFunctionType* subsctiber);
 	void unSubscribeFrom(eEvent event_id, ActionFunctionType* subsctiber);

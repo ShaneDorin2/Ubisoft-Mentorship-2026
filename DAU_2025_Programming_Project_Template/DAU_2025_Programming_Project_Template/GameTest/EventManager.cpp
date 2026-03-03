@@ -12,11 +12,14 @@ sEventManager::~sEventManager()
 	// Do i have anything to deleit here ? 
 }
 
+void sEventManager::createInstance()
+{
+	event_manager_single_instance = new sEventManager();
+}
+
 sEventManager* sEventManager::getInstance()
 {
-	if (event_manager_single_instance == nullptr) {
-		event_manager_single_instance = new sEventManager();
-	}
+	assert(event_manager_single_instance != nullptr)
 	return event_manager_single_instance;
 }
 

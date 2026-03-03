@@ -7,7 +7,7 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 	sprite(sprite_ptr), 
 	Movable(start_x_pos, start_y_pos)
 {
-	assert(sprinte != nullptr);
+	assert(sprite != nullptr);
 	sprite->SetPosition(x_pos, y_pos);
 	
 

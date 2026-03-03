@@ -1,4 +1,7 @@
 #pragma once
+#include <windows.h>
+//#include <cstdio>
+//#include <intrin.h>
 
 /* 
 * These functions will be used in debug. 
@@ -12,9 +15,8 @@
 */
 
 
-#if define(_DEBUG)
-
-#define assert(test) \ 
+#if defined(_DEBUG)
+#define assert(test) \
 if (!(test)) \
 DebugBreak();
 
@@ -24,6 +26,6 @@ std::printf(message)
 
 #else
 #define assert(test)
-#define softAssert(test)
+#define softAssert(test, message)
 
 #endif
