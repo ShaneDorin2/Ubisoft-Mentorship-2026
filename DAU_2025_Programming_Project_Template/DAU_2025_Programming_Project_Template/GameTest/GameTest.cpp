@@ -130,19 +130,19 @@ void Update(float deltaTime)
 
 	if (App::GetController().GetLeftThumbStickX() > 0.5f)
 	{
-		event_manager->trigger(event_manager->RIGHT_INPUT);
+		event_manager->trigger(eEvent::RIGHT_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickX() < -0.5f)
 	{
-		event_manager->trigger(event_manager->LEFT_INPUT);
+		event_manager->trigger(eEvent::LEFT_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickY() > 0.5f)
 	{
-		event_manager->trigger(event_manager->UP_INPUT);
+		event_manager->trigger(eEvent::UP_INPUT);
 	}
 	if (App::GetController().GetLeftThumbStickY() < -0.5f)
 	{
-		event_manager->trigger(event_manager->DOWN_INPUT);
+		event_manager->trigger(eEvent::DOWN_INPUT);
 	}
 
 	// this does not work because this is a Windows app and not a Consol app. what is the difference ? 

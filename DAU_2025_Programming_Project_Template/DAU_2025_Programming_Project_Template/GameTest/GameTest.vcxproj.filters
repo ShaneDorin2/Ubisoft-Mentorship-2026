@@ -57,6 +57,7 @@
     <ClInclude Include="Assert.h" />
     <ClInclude Include="Positionable.h" />
     <ClInclude Include="Movable.h" />
+    <ClInclude Include="EventNames.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">

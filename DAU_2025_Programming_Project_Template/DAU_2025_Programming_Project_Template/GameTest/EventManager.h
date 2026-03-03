@@ -3,6 +3,7 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
+#include "EventNames.h"
 
 /* EVENT MANAGER
 * All Events in the game are DECLARED, STORED and TRIGGERED here. 
@@ -17,16 +18,6 @@ class sEventManager
 {
 public: // definitions
 	using ActionFunctionType = std::function<void()>; // a function type that has no parrameter and returns void. 
-
-	enum eEvent // all events existing in the project are named in this Enume. 
-		// TODO: move eEvent to its own file. 
-	{
-		// input events
-		UP_INPUT,
-		DOWN_INPUT,
-		RIGHT_INPUT,
-		LEFT_INPUT
-	};
 
 public: // logic
 
