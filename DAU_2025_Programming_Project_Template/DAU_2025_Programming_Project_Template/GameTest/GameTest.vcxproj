@@ -185,6 +185,7 @@
     <ClInclude Include="Assert.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventNames.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Movable.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Positionable.h" />
@@ -200,6 +201,7 @@
     <ClCompile Include="App\SimpleSprite.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Positionable.cpp" />

@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Player.h"
 #include "EventManager.h"
+#include "InputManager.h"
 //------------------------------------------------------------------------
 // Eample data....
 //------------------------------------------------------------------------
@@ -56,7 +57,6 @@ void Init()
 
 	// My event manager code 
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
-	event_manager = sEventManager::getInstance();
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);
@@ -128,22 +128,7 @@ void Update(float deltaTime)
 	//------------------------------------------------------------------------
 	// My sprite code
 
-	if (App::GetController().GetLeftThumbStickX() > 0.5f)
-	{
-		event_manager->trigger(eEvent::RIGHT_INPUT);
-	}
-	if (App::GetController().GetLeftThumbStickX() < -0.5f)
-	{
-		event_manager->trigger(eEvent::LEFT_INPUT);
-	}
-	if (App::GetController().GetLeftThumbStickY() > 0.5f)
-	{
-		event_manager->trigger(eEvent::UP_INPUT);
-	}
-	if (App::GetController().GetLeftThumbStickY() < -0.5f)
-	{
-		event_manager->trigger(eEvent::DOWN_INPUT);
-	}
+	InputManager::processUserInput();
 
 	// this does not work because this is a Windows app and not a Consol app. what is the difference ? 
 	// Should I add a console to my project ? I tried turning my project into a console app but that caused errors. 
@@ -217,5 +202,6 @@ void Shutdown()
 	delete testSprite;
 	//------------------------------------------------------------------------
 
+	delete player; // player MUST be destroyed befor eventManager to satisfy assert(). 
 	sEventManager::destroyInstance();
 }
