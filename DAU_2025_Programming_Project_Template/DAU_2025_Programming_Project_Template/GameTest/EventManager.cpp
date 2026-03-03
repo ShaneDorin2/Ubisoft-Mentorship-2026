@@ -9,12 +9,21 @@ sEventManager::sEventManager()
 
 sEventManager::~sEventManager()
 {
-	// Do i have anything to deleit here ? 
+	// cannot recall why these two steps are nessesary. 
+	assert(event_library.empty() == true);
+	event_library.clear();
 }
 
 void sEventManager::createInstance()
 {
-	event_manager_single_instance = new sEventManager();
+	softAssert(event_manager_single_instance == nullptr, "Tried to create new EventManager instance when an instance already exists.");
+	if (event_manager_single_instance == nullptr) event_manager_single_instance = new sEventManager();
+}
+
+void sEventManager::destroyInstance()
+{
+	assert(event_manager_single_instance != nullptr);
+	delete event_manager_single_instance;
 }
 
 sEventManager* sEventManager::getInstance()

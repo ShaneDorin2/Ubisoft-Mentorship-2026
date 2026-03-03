@@ -55,7 +55,8 @@ void Init()
 	placeHolderImage->SetScale(1.0f);
 
 	// My event manager code 
-	event_manager = sEventManager::getInstance(); // "GetInstance()" because it is a singleton. 
+	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
+	event_manager = sEventManager::getInstance();
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);
@@ -215,4 +216,6 @@ void Shutdown()
 	// Example Sprite Code....
 	delete testSprite;
 	//------------------------------------------------------------------------
+
+	sEventManager::destroyInstance();
 }
