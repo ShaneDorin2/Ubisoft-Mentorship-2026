@@ -19,7 +19,7 @@ class Player : public Movable
 {
 public: // constructor
 
-	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = nullptr);
+	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr);
 	~Player();
 
 	// "rule of threes"
