@@ -34,5 +34,6 @@ protected: // memory
 private : // logic
 
 	void normalizeVector(float& x, float& y);
+	void wrapCoordinates(float& x, float& y);
 };
 

@@ -2,10 +2,16 @@
 #include "Movable.h"
 #include <cmath>
 
+#include "App/AppSettings.h"
+
 void Movable::updatePosition(float& delta_time)
 {
 	x_pos += x_velocity * delta_time;
 	y_pos += y_velocity * delta_time;
+
+	wrapCoordinates(x_pos, y_pos);
+
+	// upgraded my project from c++14 to c++17 just so that I can use clamp(). Is that okay ? (am i gonna die T-T)
 }
 
 Movable::Movable(float start_x_pos, float start_y_pos):
@@ -27,4 +33,16 @@ void Movable::normalizeVector(float& x, float& y)
 	float magnitude = sqrtf(powf(abs(x), 2) + powf(abs(y), 2)); // pythagoras theorem 
 	x /= magnitude;
 	y /= magnitude;
+}
+
+// When coordinates leave bounds of window, they are teleported to the other side of the window. 
+void Movable::wrapCoordinates(float& x, float& y)
+{
+	float width = APP_VIRTUAL_WIDTH;
+	float hight = APP_VIRTUAL_HEIGHT;
+
+	x = std::fmod(x, width);
+	x = x <= 0 ? width : x;
+	y = std::fmod(y, hight);
+	y = y <= 0 ? hight : y;
 }
