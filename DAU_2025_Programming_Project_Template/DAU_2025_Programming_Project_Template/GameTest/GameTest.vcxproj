@@ -184,6 +184,8 @@
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="Assert.h" />
+    <ClInclude Include="Boid.h" />
+    <ClInclude Include="BoidFlock.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventNames.h" />
     <ClInclude Include="InputManager.h" />
@@ -200,6 +202,8 @@
     <ClCompile Include="App\SimpleController.cpp" />
     <ClCompile Include="App\SimpleSound.cpp" />
     <ClCompile Include="App\SimpleSprite.cpp" />
+    <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="BoidFlock.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="InputManager.cpp" />

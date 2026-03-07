@@ -12,12 +12,15 @@
 #include "Player.h"
 #include "EventManager.h"
 #include "InputManager.h"
+#include "BoidFlock.h"
 
 //------------------------------------------------------------------------
 // My data
 CSimpleSprite* placeHolderImage;
+CSimpleSprite* placeHolderBoidImage;
 sEventManager* event_manager; // singleton
 Player* player;
+BoidFlock* boid_flock;
 
 //------------------------------------------------------------------------
 // Called before first update. Do any initial setup here.
@@ -27,6 +30,8 @@ void Init()
 	// My sprite code
 	placeHolderImage = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
 	placeHolderImage->SetScale(1.0f);
+	placeHolderBoidImage = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
+	placeHolderBoidImage->SetScale(0.5f);
 
 	// My event manager code 
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
@@ -35,6 +40,9 @@ void Init()
 	player = new Player(400.0f, 400.0f, placeHolderImage);
 
 	//TO DO: innit all scene elements here. 
+
+	std::vector<Boid*> boid_list = { new Boid(0, 0, placeHolderBoidImage) };
+	boid_flock = new BoidFlock(std::move(boid_list));
 }
 
 //------------------------------------------------------------------------
@@ -52,6 +60,8 @@ void Update(float deltaTime)
 	// update player position
 	player->updatePosition(deltaTime);
 
+	boid_flock->updateBoidLogic(deltaTime);
+
 	/* 
 	Should I combine these two "player->" functions into one player->tick(deltaTime) function, 
 	or is it best to keep UPDATE LOGIC and UPDATE POSITION seperate ?
@@ -67,6 +77,8 @@ void Render()
 
 	player->draw();
 
+	boid_flock->draw();
+
 }
 
 //------------------------------------------------------------------------
@@ -77,6 +89,7 @@ void Shutdown()
 {
 
 	delete player; // player MUST be destroyed befor eventManager to satisfy assert(). 
+	delete boid_flock;
 	sEventManager::destroyInstance();
 
 }

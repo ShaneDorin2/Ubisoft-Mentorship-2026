@@ -26,6 +26,8 @@
     <ClCompile Include="Positionable.cpp" />
     <ClCompile Include="Movable.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="Boid.cpp" />
+    <ClCompile Include="BoidFlock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -60,6 +62,8 @@
     <ClInclude Include="Movable.h" />
     <ClInclude Include="EventNames.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="Boid.h" />
+    <ClInclude Include="BoidFlock.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">

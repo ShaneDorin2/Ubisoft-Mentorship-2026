@@ -7,7 +7,7 @@ class Boid : public Movable
 {
 public : // constructors
 
-	Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite);
+	Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float start_x_velocity = 1, float start_y_velocity = 1);
 	~Boid();
 
 	// "rule of threes"
@@ -21,27 +21,9 @@ public : // logic
 
 	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
 
-	void setSeparationTarget(float x, float y);
-	void setAlignmentTarget(float x, float y);
-	void setCohesionTarget(float x, float y);
-
-	void setWeights(short separation, short alignment, short coheshion);
-
 private : // data
 	CSimpleSprite* sprite;
-
-	float in_separation_target_x;
-	float in_separation_target_y;
-
-	float in_alignment_target_x;
-	float in_alignment_target_y;
-
-	float in_cohesion_target_x;
-	float in_cohesion_target_y;
-
-	short separation_weight;
-	short alignment_weight;
-	short cohesion_weight;
-	// made these shorts to avoid buffer space. 
 };
+
+// so far, this is VERY similar to the Player class. 
 
