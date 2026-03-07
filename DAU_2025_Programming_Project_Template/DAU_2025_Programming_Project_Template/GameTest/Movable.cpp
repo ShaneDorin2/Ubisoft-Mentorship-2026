@@ -6,8 +6,8 @@
 
 void Movable::updatePosition(float& delta_time)
 {
-	x_pos += x_velocity * delta_time;
-	y_pos += y_velocity * delta_time;
+	x_pos += x_velocity * delta_time * speed;
+	y_pos += y_velocity * delta_time * speed;
 
 	wrapCoordinates(x_pos, y_pos);
 
@@ -23,6 +23,11 @@ void Movable::setVelocity(float new_x, float new_y)
 	x_velocity = new_x;
 	y_velocity = new_y;
 	normalizeVector(x_velocity, y_velocity);
+}
+
+void Movable::setSpeed(float new_speed)
+{
+	speed = new_speed;
 }
 
 void Movable::normalizeVector(float& x, float& y)

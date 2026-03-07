@@ -16,10 +16,18 @@ public : // constructors
 
 public : // logic
 	
-	void updateVelocity();
+	void updateVelocity(float new_x, float new_y);
 	void updatePosition(float& delta_time) override;
 
 	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
+
+public : // Get logic
+
+	float getX();
+	float getY();
+
+	float getXVelocity();
+	float getYVelocity();
 
 private : // data
 	CSimpleSprite* sprite;

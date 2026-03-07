@@ -25,11 +25,15 @@ protected : // constructor
 protected : // logic
 
 	void setVelocity(float new_x, float new_y);
+	void setSpeed(float new_speed);
 
 protected: // memory
 
 	float x_velocity = 0; 
 	float y_velocity = 0;
+
+	float speed = 1;
+	// buffer be here :(
 
 private : // logic
 

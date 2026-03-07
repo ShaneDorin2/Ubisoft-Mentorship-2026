@@ -6,6 +6,7 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	sprite(sprite)
 {
 	setVelocity(start_x_velocity, start_y_velocity);
+	setSpeed(0.5);
 }
 
 Boid::~Boid()
@@ -13,9 +14,9 @@ Boid::~Boid()
 	delete sprite;
 }
 
-void Boid::updateVelocity()
+void Boid::updateVelocity(float new_x, float new_y)
 {
-
+	setVelocity(new_x, new_y);
 }
 
 void Boid::updatePosition(float& delta_time)
@@ -27,4 +28,24 @@ void Boid::updatePosition(float& delta_time)
 void Boid::draw()
 {
 	sprite->Draw();
+}
+
+float Boid::getX()
+{
+	return x_pos;
+}
+
+float Boid::getY()
+{
+	return y_pos;
+}
+
+float Boid::getXVelocity()
+{
+	return x_velocity;
+}
+
+float Boid::getYVelocity()
+{
+	return y_velocity;
 }
