@@ -5,8 +5,11 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	Movable(start_x_pos, start_y_pos),
 	sprite(sprite)
 {
+	assert(sprite != nullptr);
+	
 	setVelocity(start_x_velocity, start_y_velocity);
 	setSpeed(0.5);
+	sprite->SetScale(0.3);
 }
 
 Boid::~Boid()

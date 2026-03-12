@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Boid.h"
+#include <string>
 
 
 /* BoidFlock manages a group of Boid objects that 'perseive' each other. 
@@ -14,6 +15,7 @@ class BoidFlock
 public: // constructors
 
 	BoidFlock(std::vector<Boid*> boids);
+	BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float start_x_pos = 0, float start_y_pos = 0);
 	~BoidFlock();
 
 	// "rule of threes"

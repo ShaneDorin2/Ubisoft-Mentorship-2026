@@ -1,9 +1,53 @@
 #include "stdafx.h"
 #include "BoidFlock.h"
 #include <cmath>
+#include <iostream>
+#include <format>
+#include <random>
 
 BoidFlock::BoidFlock(std::vector<Boid*> boids) : boids(std::move(boids))
-{}
+// TO DO have an optional constructor where it takes the num of boids in the flock and creates the interally. 
+{
+	assert(boids.size() > 0);
+}
+
+// Constructor that creates its own Boid objects using a 1 by 1 sprite sheet. 
+BoidFlock::BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float start_x_pos, float start_y_pos)
+{
+	assert(num_of_boids > 0);
+	
+	// init vector
+	boids = std::vector<Boid*>();
+
+	// build file path
+	std::string file_path = (".\\TestData\\" + sprite_sheet_file_path).c_str();
+	const char* file_path_const_char = file_path.c_str();
+
+	// init start velocities (randomly selected for each boid)
+	float start_x_velocity;
+	float start_y_velocity;
+
+	// random number generator
+	// TODO move this somwhere else where the code can easilly be re-used. 
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_real_distribution<float> randomNoneZeroFloat(0.1f, 1.0f);
+
+	// populate the flock. 
+	for (int i =0; i < num_of_boids ; i++) {
+
+		start_x_velocity = randomNoneZeroFloat(gen);
+		start_y_velocity = randomNoneZeroFloat(gen);
+
+		boids.push_back(
+			new Boid(
+				start_x_pos, start_y_pos,
+				new CSimpleSprite(file_path_const_char, 1, 1), 
+				start_x_velocity, start_y_velocity
+			)
+		);
+	}
+}
 
 BoidFlock::~BoidFlock()
 {
@@ -18,9 +62,9 @@ void BoidFlock::updateBoidLogic(float delta_time)
 	// TODO put this data somewhere else
 	float protected_distance = 150;
 	float visible_distance = 200;
-	float avoid_weight = 0.001;
-	float alignment_weight = 0.01;
-	float cohesion_weight = 0.001;
+	float avoid_weight = 0.001f;
+	float alignment_weight = 0.01f;
+	float cohesion_weight = 0.001f;
 
 
 	float close_dy;

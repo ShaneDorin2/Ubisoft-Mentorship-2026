@@ -17,11 +17,6 @@
 //------------------------------------------------------------------------
 // My data
 CSimpleSprite* placeHolderImage;
-CSimpleSprite* placeHolderBoidImage1;
-CSimpleSprite* placeHolderBoidImage2;
-CSimpleSprite* placeHolderBoidImage3;
-CSimpleSprite* placeHolderBoidImage4;
-CSimpleSprite* placeHolderBoidImage5;
 sEventManager* event_manager; // singleton
 Player* player;
 BoidFlock* boid_flock;
@@ -35,17 +30,6 @@ void Init()
 	placeHolderImage = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
 	placeHolderImage->SetScale(1.0f);
 
-	placeHolderBoidImage1 = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	placeHolderBoidImage1->SetScale(0.5f);
-	placeHolderBoidImage2 = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	placeHolderBoidImage2->SetScale(0.5f);
-	placeHolderBoidImage3 = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	placeHolderBoidImage3->SetScale(0.5f);
-	placeHolderBoidImage4 = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	placeHolderBoidImage4->SetScale(0.5f);
-	placeHolderBoidImage5 = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	placeHolderBoidImage5->SetScale(0.5f);
-
 	// My event manager code 
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
 
@@ -54,14 +38,7 @@ void Init()
 
 	//TO DO: innit all scene elements here. 
 
-	std::vector<Boid*> boid_list = { 
-		new Boid(0, 0, placeHolderBoidImage1, -1, -1),
-		new Boid(100, 0, placeHolderBoidImage2, -1, 1),
-		new Boid(0, 100, placeHolderBoidImage3, 1, -1),
-		new Boid(-100, 0, placeHolderBoidImage4),
-		new Boid(0, -100, placeHolderBoidImage5)
-	};
-	boid_flock = new BoidFlock(std::move(boid_list));
+	boid_flock = new BoidFlock(5, "PlaceHolderImage.png");
 }
 
 //------------------------------------------------------------------------
