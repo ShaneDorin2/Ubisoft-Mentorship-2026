@@ -60,11 +60,11 @@ BoidFlock::~BoidFlock()
 void BoidFlock::updateBoidLogic(float delta_time)
 {
 	// TODO put this data somewhere else
-	float protected_distance = 150;
-	float visible_distance = 200;
+	float protected_distance = 100;
+	float visible_distance = 300;
 	float avoid_weight = 0.001f;
 	float alignment_weight = 0.01f;
-	float cohesion_weight = 0.001f;
+	float cohesion_weight = 0.0002f;
 
 
 	float close_dy;

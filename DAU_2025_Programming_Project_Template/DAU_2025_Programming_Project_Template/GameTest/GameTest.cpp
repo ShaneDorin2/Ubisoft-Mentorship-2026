@@ -38,7 +38,7 @@ void Init()
 
 	//TO DO: innit all scene elements here. 
 
-	boid_flock = new BoidFlock(5, "PlaceHolderImage.png");
+	boid_flock = new BoidFlock(20, "PlaceHolderImage.png");
 }
 
 //------------------------------------------------------------------------
