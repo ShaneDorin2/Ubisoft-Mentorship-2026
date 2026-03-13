@@ -27,7 +27,25 @@ public: // logic
 	void updateBoidLogic(float delta_time);
 	void draw();
 
+private: // logic
+
+	void applySeparationLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
+	void applyAlignmentLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
+	void applyCohesionLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
+	void applyBorderAvoidanceLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
+
 private: // data
 	std::vector<Boid*> boids;
+
+	float protected_distance = 50;
+	float visible_distance = 200;
+
+	float avoid_weight = 0.05f;
+	float alignment_weight = 0.1f;
+	float cohesion_weight = 0.001f;
+	// buffer space :(
+
+	float margin_size = 100;
+	float turn_factor = 0.1;
 };
 

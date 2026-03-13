@@ -8,7 +8,7 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	assert(sprite != nullptr);
 	
 	setVelocity(start_x_velocity, start_y_velocity);
-	setSpeed(0.08);
+	Movable::setSpeed(0.08);
 	sprite->SetScale(0.1);
 }
 
@@ -51,4 +51,10 @@ float Boid::getXVelocity()
 float Boid::getYVelocity()
 {
 	return y_velocity;
+}
+
+void Boid::setSpeed(float new_speed)
+{
+	assert(new_speed >= 0);
+	Movable::setSpeed(new_speed);
 }

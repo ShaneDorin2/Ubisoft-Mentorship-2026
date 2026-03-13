@@ -29,6 +29,8 @@ public : // Get logic
 	float getXVelocity();
 	float getYVelocity();
 
+	void setSpeed(float new_speed);
+
 private : // data
 	CSimpleSprite* sprite;
 };
