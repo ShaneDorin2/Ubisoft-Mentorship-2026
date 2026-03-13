@@ -60,12 +60,13 @@ BoidFlock::~BoidFlock()
 void BoidFlock::updateBoidLogic(float delta_time)
 {
 	// TODO put this data somewhere else
-	float protected_distance = 100;
-	float visible_distance = 300;
-	float avoid_weight = 0.001f;
-	float alignment_weight = 0.01f;
-	float cohesion_weight = 0.0002f;
-
+	float protected_distance = 50;
+	float visible_distance = 200;
+	float avoid_weight = 0.05f;
+	float alignment_weight = 0.1f;
+	float cohesion_weight = 0.001f;
+	float margin_size = 100;
+	float turn_factor = 0.1;
 
 	float close_dy;
 	float close_dx;
@@ -77,10 +78,20 @@ void BoidFlock::updateBoidLogic(float delta_time)
 	float x_pos_avg;
 	float y_pos_avg;
 
+	
+	assert(margin_size < APP_VIRTUAL_WIDTH / 2 && margin_size < APP_VIRTUAL_HEIGHT / 2);
+
+	float left_margin = 0 + margin_size;
+	float right_margin = APP_VIRTUAL_WIDTH - margin_size;
+	float top_margin = 0 + margin_size;
+	float bottom_margin = APP_VIRTUAL_HEIGHT - margin_size;
+
 	for (Boid* boid : boids) {
 
 		float new_x_vel = boid->getXVelocity();
 		float new_y_vel = boid->getYVelocity();
+
+		float other_boid_distance;
 
 		// Separation
 		close_dy = 0;
@@ -98,18 +109,17 @@ void BoidFlock::updateBoidLogic(float delta_time)
 		for (Boid* other_boid : boids) {
 			if (boid == other_boid) continue;
 
-			// Separation
-			if (protected_distance >= std::hypotf(
-				boid->getX() - other_boid->getX(), 
-				boid->getY() - other_boid->getY())
-				) {
-				close_dx += boid->getX() - other_boid->getX();
-				close_dy += boid->getY() - other_boid->getY();
-			}
-			else if (visible_distance >= std::hypotf(
+			other_boid_distance = std::hypotf(
 				boid->getX() - other_boid->getX(),
-				boid->getY() - other_boid->getY())
-				) {
+				boid->getY() - other_boid->getY());
+
+			// Separation
+			if (protected_distance >= other_boid_distance) {
+
+				close_dx += (boid->getX() - other_boid->getX()) * (1- other_boid_distance / protected_distance);
+				close_dy += (boid->getY() - other_boid->getY()) * (1- other_boid_distance / protected_distance);
+			}
+			else if (visible_distance >= other_boid_distance) {
 
 				// Alignment
 				x_vel_avg += other_boid->getXVelocity();
@@ -122,23 +132,31 @@ void BoidFlock::updateBoidLogic(float delta_time)
 			}
 		}
 
-		// separation
-		new_x_vel += close_dx * avoid_weight;
-		new_y_vel += close_dy * avoid_weight;
-		
-		if (num_of_boid_neibords != 0) {
+		// Screen border avoidance
+		if (boid->getX() < left_margin) new_x_vel = boid->getXVelocity() + turn_factor;
+		else if (boid->getX() > right_margin) new_x_vel = boid->getXVelocity() - turn_factor;
+		else if (boid->getY() > bottom_margin) new_y_vel = boid->getYVelocity() - turn_factor;
+		else if (boid->getY() < top_margin) new_y_vel = boid->getYVelocity() + turn_factor;
+		else {
 
-			// alignment
-			x_vel_avg = x_vel_avg / num_of_boid_neibords;
-			y_vel_avg = y_vel_avg / num_of_boid_neibords;
-			new_x_vel += (x_vel_avg - new_x_vel) * alignment_weight;
-			new_y_vel += (y_vel_avg - new_y_vel) * alignment_weight;
+			// separation
+			new_x_vel += close_dx * avoid_weight;
+			new_y_vel += close_dy * avoid_weight;
 
-			// Cohesion
-			x_pos_avg = x_pos_avg / num_of_boid_neibords;
-			y_pos_avg = y_pos_avg / num_of_boid_neibords;
-			new_x_vel += (x_pos_avg - boid->getX()) * cohesion_weight;
-			new_y_vel += (y_pos_avg - boid->getY()) * cohesion_weight;
+			if (num_of_boid_neibords != 0) {
+
+				// alignment
+				x_vel_avg = x_vel_avg / num_of_boid_neibords;
+				y_vel_avg = y_vel_avg / num_of_boid_neibords;
+				new_x_vel += (x_vel_avg - new_x_vel) * alignment_weight;
+				new_y_vel += (y_vel_avg - new_y_vel) * alignment_weight;
+
+				// Cohesion
+				x_pos_avg = x_pos_avg / num_of_boid_neibords;
+				y_pos_avg = y_pos_avg / num_of_boid_neibords;
+				new_x_vel += (x_pos_avg - boid->getX()) * cohesion_weight;
+				new_y_vel += (y_pos_avg - boid->getY()) * cohesion_weight;
+			}
 		}
 
 		boid->updateVelocity(new_x_vel, new_y_vel);

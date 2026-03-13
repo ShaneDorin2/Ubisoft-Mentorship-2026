@@ -9,7 +9,7 @@ void Movable::updatePosition(float& delta_time)
 	x_pos += x_velocity * delta_time * speed;
 	y_pos += y_velocity * delta_time * speed;
 
-	wrapCoordinates(x_pos, y_pos);
+	//wrapCoordinates(x_pos, y_pos);
 
 	// upgraded my project from c++14 to c++17 just so that I can use clamp(). Is that okay ? (am i gonna die T-T)
 }

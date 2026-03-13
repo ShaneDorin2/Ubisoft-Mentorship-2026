@@ -8,8 +8,8 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	assert(sprite != nullptr);
 	
 	setVelocity(start_x_velocity, start_y_velocity);
-	setSpeed(0.2);
-	sprite->SetScale(0.3);
+	setSpeed(0.08);
+	sprite->SetScale(0.1);
 }
 
 Boid::~Boid()
