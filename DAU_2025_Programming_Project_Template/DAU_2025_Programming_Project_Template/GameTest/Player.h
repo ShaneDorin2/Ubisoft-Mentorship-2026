@@ -2,6 +2,7 @@
 #include "app\app.h"
 #include "functional"
 #include "Movable.h"
+#include "Collider2D.h"
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 
@@ -28,7 +29,7 @@ public: // constructor
 
 public: // logic
 
-	void updateVelocity(); 
+	void updateLogic(); 
 	void updatePosition(float& delta_time) override;
 
 	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
@@ -44,6 +45,7 @@ private: // logic
 private: // memeory
 
 	CSimpleSprite* sprite; 
+	Collider2D* collider;
 
 private: // input memory
 

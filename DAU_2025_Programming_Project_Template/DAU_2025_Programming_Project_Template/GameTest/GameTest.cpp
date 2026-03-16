@@ -13,6 +13,7 @@
 #include "EventManager.h"
 #include "InputManager.h"
 #include "BoidFlock.h"
+#include "ColliderLibrary.h"
 
 //------------------------------------------------------------------------
 // My data
@@ -32,6 +33,7 @@ void Init()
 
 	// My event manager code 
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
+	sColliderLibrary::createInstance(); // createInstance must be called ONCE in the function.  
 
 	// My player code
 	player = new Player(400.0f, 400.0f, placeHolderImage);
@@ -51,7 +53,7 @@ void Update(float deltaTime)
 	InputManager::processUserInput();
 
 	// apply input data
-	player->updateVelocity();
+	player->updateLogic();
 
 	// update player position
 	player->updatePosition(deltaTime);
@@ -87,5 +89,6 @@ void Shutdown()
 	delete player; // player MUST be destroyed befor eventManager to satisfy assert(). 
 	delete boid_flock;
 	sEventManager::destroyInstance();
+	sColliderLibrary::destroyInstance();
 
 }

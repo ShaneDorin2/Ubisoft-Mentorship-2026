@@ -46,6 +46,6 @@ private: // data
 	// buffer space :(
 
 	float margin_size = 100;
-	float turn_factor = 0.1;
+	float turn_factor = 0.1f;
 };
 

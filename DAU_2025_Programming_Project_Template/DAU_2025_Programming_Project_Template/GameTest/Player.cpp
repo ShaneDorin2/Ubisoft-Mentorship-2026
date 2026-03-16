@@ -2,6 +2,7 @@
 #include "Player.h"
 #include <memory>
 #include "EventManager.h"
+#include "Collider2D.h"
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
@@ -37,6 +38,10 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 		eEvent::LEFT_INPUT,
 		&onLeftInputLambda
 	);
+
+	// create collider
+	collider = new Collider2D(CIRCLE, 10, true, this);
+	collider->setActive(false);
 }
 
 Player::~Player()
@@ -65,6 +70,9 @@ Player::~Player()
 		eEvent::LEFT_INPUT,
 		&onLeftInputLambda
 	);
+
+	
+	delete collider;
 }
 
 void Player::draw()
@@ -72,12 +80,18 @@ void Player::draw()
 	sprite->Draw();
 }
 
-void Player::updateVelocity() { 
+void Player::updateLogic() { 
 
+	// input 
 	setVelocity(in_direction_input_x, in_direction_input_y);
 
 	in_direction_input_x = 0;
 	in_direction_input_y = 0;
+
+	// collition
+	std::vector<Collider2D*> collitions = collider->getAllCollitions();
+	if (collitions.empty()) return;
+	softAssert(false, "colliding !");
 }
 
 void Player::updatePosition(float& delta_time)

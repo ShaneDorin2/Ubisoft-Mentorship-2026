@@ -10,11 +10,15 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	setVelocity(start_x_velocity, start_y_velocity);
 	Movable::setSpeed(0.08);
 	sprite->SetScale(0.1);
+
+	collider = new Collider2D(CIRCLE, 1, true, this);
+	//collider->setActive(false);
 }
 
 Boid::~Boid()
 {
 	delete sprite;
+	delete collider;
 }
 
 void Boid::updateVelocity(float new_x, float new_y)

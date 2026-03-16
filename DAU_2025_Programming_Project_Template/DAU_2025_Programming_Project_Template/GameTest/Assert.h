@@ -22,7 +22,7 @@ DebugBreak();
 
 #define softAssert(test, message) \
 if (!(test)) \
-std::printf(message)
+OutputDebugStringA("ASSERT FAILED ------------ >      " message "\n") \
 
 #else
 #define assert(test)

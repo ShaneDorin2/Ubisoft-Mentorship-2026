@@ -186,6 +186,8 @@
     <ClInclude Include="Assert.h" />
     <ClInclude Include="Boid.h" />
     <ClInclude Include="BoidFlock.h" />
+    <ClInclude Include="Collider2D.h" />
+    <ClInclude Include="ColliderLibrary.h" />
     <ClInclude Include="EventManager.h" />
     <ClInclude Include="EventNames.h" />
     <ClInclude Include="InputManager.h" />
@@ -204,6 +206,8 @@
     <ClCompile Include="App\SimpleSprite.cpp" />
     <ClCompile Include="Boid.cpp" />
     <ClCompile Include="BoidFlock.cpp" />
+    <ClCompile Include="Collider2D.cpp" />
+    <ClCompile Include="ColliderLibrary.cpp" />
     <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
     <ClCompile Include="InputManager.cpp" />

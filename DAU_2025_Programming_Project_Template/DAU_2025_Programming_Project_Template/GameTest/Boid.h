@@ -2,6 +2,7 @@
 
 #include "Movable.h"
 #include "app\app.h"
+#include "Collider2D.h"
 
 class Boid : public Movable
 {
@@ -33,6 +34,7 @@ public : // Get logic
 
 private : // data
 	CSimpleSprite* sprite;
+	Collider2D* collider;
 };
 
 // so far, this is VERY similar to the Player class. 

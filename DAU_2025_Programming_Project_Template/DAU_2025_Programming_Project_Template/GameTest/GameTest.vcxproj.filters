@@ -28,6 +28,8 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Boid.cpp" />
     <ClCompile Include="BoidFlock.cpp" />
+    <ClCompile Include="Collider2D.cpp" />
+    <ClCompile Include="ColliderLibrary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -64,6 +66,8 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Boid.h" />
     <ClInclude Include="BoidFlock.h" />
+    <ClInclude Include="Collider2D.h" />
+    <ClInclude Include="ColliderLibrary.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">
