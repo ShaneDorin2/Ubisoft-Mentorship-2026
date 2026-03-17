@@ -28,6 +28,9 @@ public: // logic
 	const float& getY();
 	const float& getRadius();
 	void setActive(bool is_active);
+	void drawGizmo();
+
+	void drawCircle(float x_center, float y_center, float radius, int num_of_sides); //TO DO, move this to another file where it can be used more widely. 
 
 private: // logic
 

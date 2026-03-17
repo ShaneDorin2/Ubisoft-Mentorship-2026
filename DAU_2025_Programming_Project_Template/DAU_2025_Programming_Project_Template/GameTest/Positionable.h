@@ -4,6 +4,11 @@
 
 class Positionable
 {
+public : // logic
+
+	const float& getXPos();
+	const float& getYPos();
+
 protected: //contructors
 
 	Positionable(float start_x = 0, float start_y = 0);

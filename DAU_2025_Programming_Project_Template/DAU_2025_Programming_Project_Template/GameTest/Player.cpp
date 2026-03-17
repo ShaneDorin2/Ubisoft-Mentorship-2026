@@ -40,8 +40,7 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 	);
 
 	// create collider
-	collider = new Collider2D(CIRCLE, 10, true, this);
-	collider->setActive(false);
+	collider = new Collider2D(CIRCLE, 100, true, this);
 }
 
 Player::~Player()
@@ -90,8 +89,12 @@ void Player::updateLogic() {
 
 	// collition
 	std::vector<Collider2D*> collitions = collider->getAllCollitions();
-	if (collitions.empty()) return;
-	softAssert(false, "colliding !");
+	if (collitions.empty() == false) {
+		softAssert(false, "colliding !");
+	}
+	else {
+		softAssert(false, "NOT colliding !");
+	}
 }
 
 void Player::updatePosition(float& delta_time)
