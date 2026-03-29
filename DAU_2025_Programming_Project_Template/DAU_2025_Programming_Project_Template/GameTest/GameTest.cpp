@@ -94,6 +94,7 @@ void Shutdown()
 
 	delete player; // player MUST be destroyed befor eventManager to satisfy assert(). 
 	delete boid_flock;
+	delete test_collider;
 	sEventManager::destroyInstance();
 	sColliderLibrary::destroyInstance();
 
