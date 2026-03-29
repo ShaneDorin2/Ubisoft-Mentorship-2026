@@ -9,11 +9,11 @@
 #include "app\app.h"
 //------------------------------------------------------------------------
 #include <iostream>
-#include "Player.h"
-#include "EventManager.h"
-#include "InputManager.h"
-#include "BoidFlock.h"
-#include "ColliderLibrary.h"
+#include "GameCode\Player.h"
+#include "EngineCode\EventManager.h"
+#include "EngineCode\InputManager.h"
+#include "GameCode\BoidFlock.h"
+#include "EngineCode\ColliderLibrary.h"
 
 //------------------------------------------------------------------------
 // My data

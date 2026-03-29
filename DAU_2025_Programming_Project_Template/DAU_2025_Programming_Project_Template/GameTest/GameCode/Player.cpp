@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Player.h"
 #include <memory>
-#include "EventManager.h"
-#include "Collider2D.h"
+#include "EngineCode\EventManager.h"
+#include "EngineCode\Collider2D.h"
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 

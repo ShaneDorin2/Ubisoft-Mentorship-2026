@@ -1,8 +1,8 @@
 #pragma once
 #include "app\app.h"
 #include "functional"
-#include "Movable.h"
-#include "Collider2D.h"
+#include "EngineCode\Movable.h"
+#include "EngineCode\Collider2D.h"
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Movable.h"
+#include "EngineCode\Movable.h"
 #include "app\app.h"
-#include "Collider2D.h"
+#include "EngineCode\Collider2D.h"
 
 class Boid : public Movable
 {

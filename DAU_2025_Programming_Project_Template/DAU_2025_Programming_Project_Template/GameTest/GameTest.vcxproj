@@ -120,6 +120,7 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>C:\Users\shane\Documents\Ubisoft_Mentorship\Git\Ubisoft-Mentorship-2026\DAU_2025_Programming_Project_Template\DAU_2025_Programming_Project_Template\GameTest;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -184,16 +185,16 @@
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="Assert.h" />
-    <ClInclude Include="Boid.h" />
-    <ClInclude Include="BoidFlock.h" />
-    <ClInclude Include="Collider2D.h" />
-    <ClInclude Include="ColliderLibrary.h" />
-    <ClInclude Include="EventManager.h" />
-    <ClInclude Include="EventNames.h" />
-    <ClInclude Include="InputManager.h" />
-    <ClInclude Include="Movable.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Positionable.h" />
+    <ClInclude Include="GameCode\Boid.h" />
+    <ClInclude Include="GameCode\BoidFlock.h" />
+    <ClInclude Include="EngineCode\Collider2D.h" />
+    <ClInclude Include="EngineCode\ColliderLibrary.h" />
+    <ClInclude Include="EngineCode\EventManager.h" />
+    <ClInclude Include="EngineCode\EventNames.h" />
+    <ClInclude Include="EngineCode\InputManager.h" />
+    <ClInclude Include="EngineCode\Movable.h" />
+    <ClInclude Include="GameCode\Player.h" />
+    <ClInclude Include="EngineCode\Positionable.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -204,16 +205,16 @@
     <ClCompile Include="App\SimpleController.cpp" />
     <ClCompile Include="App\SimpleSound.cpp" />
     <ClCompile Include="App\SimpleSprite.cpp" />
-    <ClCompile Include="Boid.cpp" />
-    <ClCompile Include="BoidFlock.cpp" />
-    <ClCompile Include="Collider2D.cpp" />
-    <ClCompile Include="ColliderLibrary.cpp" />
-    <ClCompile Include="EventManager.cpp" />
+    <ClCompile Include="GameCode\Boid.cpp" />
+    <ClCompile Include="GameCode\BoidFlock.cpp" />
+    <ClCompile Include="EngineCode\Collider2D.cpp" />
+    <ClCompile Include="EngineCode\ColliderLibrary.cpp" />
+    <ClCompile Include="EngineCode\EventManager.cpp" />
     <ClCompile Include="GameTest.cpp" />
-    <ClCompile Include="InputManager.cpp" />
-    <ClCompile Include="Movable.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Positionable.cpp" />
+    <ClCompile Include="EngineCode\InputManager.cpp" />
+    <ClCompile Include="EngineCode\Movable.cpp" />
+    <ClCompile Include="GameCode\Player.cpp" />
+    <ClCompile Include="EngineCode\Positionable.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
