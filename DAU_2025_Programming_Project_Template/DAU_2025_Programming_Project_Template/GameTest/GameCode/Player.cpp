@@ -6,7 +6,8 @@
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
-	Movable(start_x_pos, start_y_pos)
+	Movable(start_x_pos, start_y_pos), 
+	collider(new Collider2D(CIRCLE, 100, true, this))
 {
 	assert(sprite != nullptr);
 	sprite->SetPosition(x_pos, y_pos);
@@ -38,15 +39,10 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 		eEvent::LEFT_INPUT,
 		&onLeftInputLambda
 	);
-
-	// create collider
-	collider = new Collider2D(CIRCLE, 100, true, this);
 }
 
 Player::~Player()
 {
-	delete sprite;
-
 	// unsubscribe from events
 	sEventManager* event_manager = sEventManager::getInstance();
 
@@ -69,9 +65,6 @@ Player::~Player()
 		eEvent::LEFT_INPUT,
 		&onLeftInputLambda
 	);
-
-	
-	delete collider;
 }
 
 void Player::draw()

@@ -3,7 +3,8 @@
 
 Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float start_x_velocity, float start_y_velocity) :
 	Movable(start_x_pos, start_y_pos),
-	sprite(sprite)
+	sprite(sprite),
+	collider(new Collider2D(CIRCLE, 10, true, this))
 {
 	assert(sprite != nullptr);
 	
@@ -11,14 +12,11 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	Movable::setSpeed(0.08f);
 	sprite->SetScale(0.1);
 
-	collider = new Collider2D(CIRCLE, 10, true, this);
 	collider->setActive(false);
 }
 
 Boid::~Boid()
 {
-	delete sprite;
-	delete collider;
 }
 
 void Boid::updateVelocity(float new_x, float new_y)

@@ -3,6 +3,7 @@
 #include "functional"
 #include "EngineCode\Movable.h"
 #include "EngineCode\Collider2D.h"
+#include <memory>
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 
@@ -44,8 +45,8 @@ private: // logic
 
 private: // memeory
 
-	CSimpleSprite* sprite; 
-	Collider2D* collider;
+	std::unique_ptr<CSimpleSprite> sprite; 
+	std::unique_ptr<Collider2D> collider;
 
 private: // input memory
 
