@@ -6,8 +6,8 @@ class Positionable
 {
 public : // logic
 
-	const float& getXPos();
-	const float& getYPos();
+	const float& getXPos() { return x_pos; }
+	const float& getYPos() { return y_pos; }
 
 protected: //contructors
 

@@ -23,10 +23,10 @@ public: // constructor
 public: // logic
 
 	std::vector<Collider2D*> getAllCollitions();
-	const eColliderShape& getShape();
-	const float& getX();
-	const float& getY();
-	const float& getRadius();
+	const eColliderShape& getShape() { return shape; }
+	const float& getX() { return x_pos; }
+	const float& getY() { return y_pos; }
+	const float& getRadius() { return radius; }
 	void setActive(bool is_active);
 	void drawGizmo();
 

@@ -61,26 +61,6 @@ std::vector<Collider2D*> Collider2D::getAllCollitions()
     return return_vector;
 }
 
-const eColliderShape& Collider2D::getShape()
-{
-    return shape;
-}
-
-const float& Collider2D::getX()
-{
-    return x_pos;
-}
-
-const float& Collider2D::getY()
-{
-    return y_pos;
-}
-
-const float& Collider2D::getRadius()
-{
-    return radius;
-}
-
 void Collider2D::setActive(bool new_active_status)
 {
     if (new_active_status == is_active) return;

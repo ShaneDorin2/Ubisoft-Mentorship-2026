@@ -21,22 +21,12 @@ sColliderLibrary* sColliderLibrary::getInstance()
     return collider_library_single_instance;
 }
 
-void sColliderLibrary::addCollider(Collider2D* collider)
-{
-    collider_library.push_back(collider);
-}
-
 void sColliderLibrary::removeCollider(Collider2D* collider)
 {
     auto it = std::find(collider_library.begin(), collider_library.end(), collider);
     assert(it != collider_library.end()); // cannot remove a collider that has not been added. 
 
     collider_library.erase(it);
-}
-
-const std::vector<Collider2D*>& sColliderLibrary::getLibrary() const
-{
-    return collider_library;
 }
 
 sColliderLibrary::sColliderLibrary() {}

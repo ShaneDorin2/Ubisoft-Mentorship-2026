@@ -25,7 +25,7 @@ protected : // constructor
 protected : // logic
 
 	void setVelocity(float new_x, float new_y);
-	void setSpeed(float new_speed);
+	void setSpeed(float new_speed) { speed = new_speed; }
 
 protected: // memory
 

@@ -1,16 +1,6 @@
 #include "stdafx.h"
 #include "Positionable.h"
 
-const float& Positionable::getXPos()
-{
-	return x_pos;
-}
-
-const float& Positionable::getYPos()
-{
-	return y_pos;
-}
-
 Positionable::Positionable(float start_x, float start_y) :
 	x_pos(start_x), y_pos(start_y)
 {}

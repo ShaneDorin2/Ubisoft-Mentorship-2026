@@ -22,10 +22,10 @@ public: // logic
 	static void destroyInstance();
 	static sColliderLibrary* getInstance();
 
-	void addCollider(Collider2D* collider);
+	void addCollider(Collider2D* collider) { collider_library.push_back(collider); }
 	void removeCollider(Collider2D* collider);
 
-	const std::vector<Collider2D*>& getLibrary() const;
+	const std::vector<Collider2D*>& getLibrary() const { return collider_library; }
 
 private: // constructor
 

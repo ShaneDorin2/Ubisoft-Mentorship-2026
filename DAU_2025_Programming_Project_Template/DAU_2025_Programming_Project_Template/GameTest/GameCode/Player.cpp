@@ -67,11 +67,6 @@ Player::~Player()
 	);
 }
 
-void Player::draw()
-{
-	sprite->Draw();
-}
-
 void Player::updateLogic() { 
 
 	// input 
@@ -95,26 +90,4 @@ void Player::updatePosition(float& delta_time)
 	Movable::updatePosition(delta_time);
 
 	sprite->SetPosition(x_pos, y_pos); 
-}
-
-// event subscribers
-
-void Player::onUpInput()
-{
-	in_direction_input_y -= 1;
-}
-
-void Player::onDownInput()
-{
-	in_direction_input_y += 1;
-}
-
-void Player::onRightInput()
-{
-	in_direction_input_x += 1;
-}
-
-void Player::onLeftInput()
-{
-	in_direction_input_x -= 1;
 }

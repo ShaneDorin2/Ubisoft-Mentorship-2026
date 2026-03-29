@@ -18,18 +18,18 @@ public : // constructors
 
 public : // logic
 	
-	void updateVelocity(float new_x, float new_y);
+	void updateVelocity(float new_x, float new_y) { setVelocity(new_x, new_y); }
 	void updatePosition(float& delta_time) override;
 
-	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
+	void draw() { sprite->Draw(); } // TODO : make this into an Interface for all draw-able objects. //Drawable
 
 public : // Get logic
 
-	float getX();
-	float getY();
+	float getX() { return x_pos; }
+	float getY() { return y_pos; }
 
-	float getXVelocity();
-	float getYVelocity();
+	float getXVelocity() { return x_velocity; }
+	float getYVelocity() { return y_velocity; }
 
 	void setSpeed(float new_speed);
 

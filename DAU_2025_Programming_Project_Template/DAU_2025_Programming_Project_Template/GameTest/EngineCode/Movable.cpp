@@ -25,11 +25,6 @@ void Movable::setVelocity(float new_x, float new_y)
 	normalizeVector(x_velocity, y_velocity);
 }
 
-void Movable::setSpeed(float new_speed)
-{
-	speed = new_speed;
-}
-
 void Movable::normalizeVector(float& x, float& y)
 {
 	if (x == 0 && y == 0) return;

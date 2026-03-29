@@ -33,15 +33,15 @@ public: // logic
 	void updateLogic(); 
 	void updatePosition(float& delta_time) override;
 
-	void draw(); // TODO : make this into an Interface for all draw-able objects. //Drawable
+	void draw() { sprite->Draw(); } // TODO : make this into an Interface for all draw-able objects. //Drawable
 
 private: // logic
 
 	// Event subscribers
-	void onUpInput(); 
-	void onDownInput(); 
-	void onRightInput(); 
-	void onLeftInput(); 
+	void onUpInput() { in_direction_input_y -= 1; }
+	void onDownInput() { in_direction_input_y += 1; }
+	void onRightInput() { in_direction_input_x += 1; }
+	void onLeftInput() { in_direction_input_x -= 1; }
 
 private: // memeory
 
