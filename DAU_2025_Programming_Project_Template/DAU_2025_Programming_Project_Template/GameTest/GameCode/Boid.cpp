@@ -10,7 +10,7 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	
 	setVelocity(start_x_velocity, start_y_velocity);
 	Movable::setSpeed(0.08f);
-	sprite->SetScale(0.1);
+	sprite->SetScale(0.1f);
 
 	collider->setActive(false);
 }

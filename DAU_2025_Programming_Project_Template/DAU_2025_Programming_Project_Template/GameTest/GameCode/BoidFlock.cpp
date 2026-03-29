@@ -5,7 +5,7 @@
 #include <format>
 #include <random>
 
-BoidFlock::BoidFlock(std::vector<Boid*> boids) : boids(std::move(boids))
+BoidFlock::BoidFlock(std::vector<Boid>&& boids) : boids(std::move(boids))
 // TO DO have an optional constructor where it takes the num of boids in the flock and creates the interally. 
 {
 	assert(boids.size() > 0);
@@ -15,9 +15,6 @@ BoidFlock::BoidFlock(std::vector<Boid*> boids) : boids(std::move(boids))
 BoidFlock::BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float start_x_pos, float start_y_pos)
 {
 	assert(num_of_boids > 0);
-	
-	// init vector
-	boids = std::vector<Boid*>();
 
 	// build file path
 	std::string file_path = (".\\TestData\\" + sprite_sheet_file_path).c_str();
@@ -34,33 +31,22 @@ BoidFlock::BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float
 	std::uniform_real_distribution<float> randomNoneZeroFloat(0.1f, 1.0f);
 
 	// populate the flock. 
+	boids.reserve(num_of_boids); // THIS IS CALLING "Boid(const Boid&) = delete;", CAUSING A CRASH !
 	for (int i =0; i < num_of_boids ; i++) {
 
 		start_x_velocity = randomNoneZeroFloat(gen);
 		start_y_velocity = randomNoneZeroFloat(gen);
 
-		boids.push_back(
-			new Boid(
-				start_x_pos, start_y_pos,
-				new CSimpleSprite(file_path_const_char, 1, 1), 
-				start_x_velocity, start_y_velocity
-			)
+		boids.emplace_back( // THIS IS CALLING "Boid(const Boid&) = delete;", CAUSING A CRASH !
+			start_x_pos, start_y_pos,
+			new CSimpleSprite(file_path_const_char, 1, 1), 
+			start_x_velocity, start_y_velocity
 		);
 	}
-
-	// for flock variation
-	//boids[0]->setSpeed(0.1);
-	//boids[1]->setSpeed(0.1);
-	//boids[2]->setSpeed(0.05);
-	//boids[3]->setSpeed(0.05);
 }
 
 BoidFlock::~BoidFlock()
-{
-	for (Boid* boid : boids) {
-		delete boid;
-	}
-}
+{}
 
 // Based off of "https://vanhunteradams.com/Pico/Animal_Movement/Boids-algorithm.html". 
 void BoidFlock::updateBoidLogic(float delta_time)
@@ -68,51 +54,50 @@ void BoidFlock::updateBoidLogic(float delta_time)
 	float new_x_vel;
 	float new_y_vel;
 
-	for (Boid* boid : boids) {
+	for (Boid& boid : boids) {
 
-		new_x_vel = boid->getXVelocity();
-		new_y_vel = boid->getYVelocity();
+		new_x_vel = boid.getXVelocity();
+		new_y_vel = boid.getYVelocity();
 
 		applySeparationLogic(boid, new_x_vel, new_y_vel);
 		applyAlignmentLogic(boid, new_x_vel, new_y_vel);
 		applyCohesionLogic(boid, new_x_vel, new_y_vel);
 		applyBorderAvoidanceLogic(boid, new_x_vel, new_y_vel);
 
-		boid->updateVelocity(new_x_vel, new_y_vel);
+		boid.updateVelocity(new_x_vel, new_y_vel);
 	}
 
-	for (Boid* boid : boids) {
+	for (Boid& boid : boids) {
 		
-		boid->updatePosition(delta_time);
+		boid.updatePosition(delta_time);
 	}
 }
 
 void BoidFlock::draw()
 {
-	for (Boid* boid : boids) {
+	for (Boid& boid : boids) {
 
-		boid->draw();
-
+		boid.draw();
 	}
 }
 
-void BoidFlock::applySeparationLogic(Boid* boid, float& new_x_vel, float& new_y_vel)
+void BoidFlock::applySeparationLogic(Boid& boid, float& new_x_vel, float& new_y_vel)
 {
 	float close_dy = 0;
 	float close_dx = 0;
 	float other_boid_distance;
 
-	for (Boid* other_boid : boids) {
-		if (boid == other_boid) continue;
+	for (Boid& other_boid : boids) {
+		if (&boid == &other_boid) continue;
 
 		other_boid_distance = std::hypotf(
-			boid->getX() - other_boid->getX(),
-			boid->getY() - other_boid->getY());
+			boid.getX() - other_boid.getX(),
+			boid.getY() - other_boid.getY());
 
 		if (protected_distance >= other_boid_distance) {
 
-			close_dx += (boid->getX() - other_boid->getX()) * (1 - other_boid_distance / protected_distance);
-			close_dy += (boid->getY() - other_boid->getY()) * (1 - other_boid_distance / protected_distance);
+			close_dx += (boid.getX() - other_boid.getX()) * (1 - other_boid_distance / protected_distance);
+			close_dy += (boid.getY() - other_boid.getY()) * (1 - other_boid_distance / protected_distance);
 		}
 	}
 
@@ -121,25 +106,25 @@ void BoidFlock::applySeparationLogic(Boid* boid, float& new_x_vel, float& new_y_
 
 }
 
-void BoidFlock::applyAlignmentLogic(Boid* boid, float& new_x_vel, float& new_y_vel)
+void BoidFlock::applyAlignmentLogic(Boid& boid, float& new_x_vel, float& new_y_vel)
 {
 	float x_vel_avg = 0;
 	float y_vel_avg = 0;
 	float num_of_boid_neibords = 0;
 	float other_boid_distance;
 
-	for (Boid* other_boid : boids) {
-		if (boid == other_boid) continue;
+	for (Boid& other_boid : boids) {
+		if (&boid == &other_boid) continue;
 
 		other_boid_distance = std::hypotf( // i calculate this TWO times per other_boid, per frame. Is there a way to only calculate it once ? 
-			boid->getX() - other_boid->getX(),
-			boid->getY() - other_boid->getY());
+			boid.getX() - other_boid.getX(),
+			boid.getY() - other_boid.getY());
 
 		if (visible_distance >= other_boid_distance) {
 
 			// Alignment
-			x_vel_avg += other_boid->getXVelocity();
-			y_vel_avg += other_boid->getYVelocity();
+			x_vel_avg += other_boid.getXVelocity();
+			y_vel_avg += other_boid.getYVelocity();
 			num_of_boid_neibords++;
 		}
 	}
@@ -153,26 +138,26 @@ void BoidFlock::applyAlignmentLogic(Boid* boid, float& new_x_vel, float& new_y_v
 	}
 }
 
-void BoidFlock::applyCohesionLogic(Boid* boid, float& new_x_vel, float& new_y_vel)
+void BoidFlock::applyCohesionLogic(Boid& boid, float& new_x_vel, float& new_y_vel)
 {
 
 	float x_pos_avg = 0;
 	float y_pos_avg = 0;
 	float num_of_boid_neibords = 0;
 
-	for (Boid* other_boid : boids) {
-		if (boid == other_boid) continue;
+	for (Boid& other_boid : boids) {
+		if (&boid == &other_boid) continue;
 
 		float other_boid_distance = std::hypotf( // i calculate this TWO times per other_boid, per frame. Is there a way to only calculate it once ? 
-			boid->getX() - other_boid->getX(),
-			boid->getY() - other_boid->getY());
+			boid.getX() - other_boid.getX(),
+			boid.getY() - other_boid.getY());
 
 		if (visible_distance >= other_boid_distance) {
 
 			num_of_boid_neibords++;
 
-			x_pos_avg += other_boid->getX();
-			y_pos_avg += other_boid->getY();
+			x_pos_avg += other_boid.getX();
+			y_pos_avg += other_boid.getY();
 		}
 	}
 
@@ -180,12 +165,12 @@ void BoidFlock::applyCohesionLogic(Boid* boid, float& new_x_vel, float& new_y_ve
 
 		x_pos_avg = x_pos_avg / num_of_boid_neibords;
 		y_pos_avg = y_pos_avg / num_of_boid_neibords;
-		new_x_vel += (x_pos_avg - boid->getX()) * cohesion_weight;
-		new_y_vel += (y_pos_avg - boid->getY()) * cohesion_weight;
+		new_x_vel += (x_pos_avg - boid.getX()) * cohesion_weight;
+		new_y_vel += (y_pos_avg - boid.getY()) * cohesion_weight;
 	}
 }
 
-void BoidFlock::applyBorderAvoidanceLogic(Boid* boid, float& new_x_vel, float& new_y_vel)
+void BoidFlock::applyBorderAvoidanceLogic(Boid& boid, float& new_x_vel, float& new_y_vel)
 {
 	// TODO, replace the consept of margins and, instead, create Wall objects that the boids will avoid. 
 
@@ -197,8 +182,8 @@ void BoidFlock::applyBorderAvoidanceLogic(Boid* boid, float& new_x_vel, float& n
 	float bottom_margin = APP_VIRTUAL_HEIGHT - margin_size;
 
 	// Screen border avoidance
-	if (boid->getX() < left_margin) new_x_vel = boid->getXVelocity() + turn_factor;
-	if (boid->getX() > right_margin) new_x_vel = boid->getXVelocity() - turn_factor;
-	if (boid->getY() > bottom_margin) new_y_vel = boid->getYVelocity() - turn_factor;
-	if (boid->getY() < top_margin) new_y_vel = boid->getYVelocity() + turn_factor;
+	if (boid.getX() < left_margin) new_x_vel = boid.getXVelocity() + turn_factor;
+	if (boid.getX() > right_margin) new_x_vel = boid.getXVelocity() - turn_factor;
+	if (boid.getY() > bottom_margin) new_y_vel = boid.getYVelocity() - turn_factor;
+	if (boid.getY() < top_margin) new_y_vel = boid.getYVelocity() + turn_factor;
 }

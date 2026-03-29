@@ -14,7 +14,7 @@ class BoidFlock
 {
 public: // constructors
 
-	BoidFlock(std::vector<Boid*> boids);
+	BoidFlock(std::vector<Boid>&& boids);
 	BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float start_x_pos = 0, float start_y_pos = 0);
 	~BoidFlock();
 
@@ -29,13 +29,13 @@ public: // logic
 
 private: // logic
 
-	void applySeparationLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
-	void applyAlignmentLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
-	void applyCohesionLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
-	void applyBorderAvoidanceLogic(Boid* boid, float& new_x_vel, float& new_y_vel);
+	void applySeparationLogic(Boid& boid, float& new_x_vel, float& new_y_vel);
+	void applyAlignmentLogic(Boid& boid, float& new_x_vel, float& new_y_vel);
+	void applyCohesionLogic(Boid& boid, float& new_x_vel, float& new_y_vel);
+	void applyBorderAvoidanceLogic(Boid& boid, float& new_x_vel, float& new_y_vel);
 
 private: // data
-	std::vector<Boid*> boids;
+	std::vector<Boid> boids;
 
 	float protected_distance = 50;
 	float visible_distance = 200;
