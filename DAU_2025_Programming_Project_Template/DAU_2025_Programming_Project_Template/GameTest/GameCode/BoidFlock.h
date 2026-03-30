@@ -38,7 +38,10 @@ private: // data
 	std::vector<Boid> boids;
 
 	float protected_distance = 50;
+	float protected_distance_sq = protected_distance * protected_distance;
+
 	float visible_distance = 200;
+	float visible_distance_sq = visible_distance * visible_distance;
 
 	float avoid_weight = 0.05f;
 	float alignment_weight = 0.1f;

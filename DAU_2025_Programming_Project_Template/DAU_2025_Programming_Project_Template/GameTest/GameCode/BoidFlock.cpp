@@ -5,7 +5,7 @@
 #include <format>
 #include <random>
 
-BoidFlock::BoidFlock(std::vector<Boid>&& boids) : boids(std::move(boids))
+BoidFlock::BoidFlock(std::vector<Boid>&& new_boids) : boids(std::move(new_boids))
 // TO DO have an optional constructor where it takes the num of boids in the flock and creates the interally. 
 {
 	assert(boids.size() > 0);
@@ -85,19 +85,19 @@ void BoidFlock::applySeparationLogic(Boid& boid, float& new_x_vel, float& new_y_
 {
 	float close_dy = 0;
 	float close_dx = 0;
-	float other_boid_distance;
+	float other_boid_distance_sq;
 
 	for (Boid& other_boid : boids) {
 		if (&boid == &other_boid) continue;
 
-		other_boid_distance = std::hypotf(
-			boid.getX() - other_boid.getX(),
-			boid.getY() - other_boid.getY());
+		other_boid_distance_sq = 
+			std::pow(boid.getX() - other_boid.getX(), 2) + 
+			std::pow(boid.getY() - other_boid.getY(), 2);
 
-		if (protected_distance >= other_boid_distance) {
+		if (protected_distance_sq >= other_boid_distance_sq) {
 
-			close_dx += (boid.getX() - other_boid.getX()) * (1 - other_boid_distance / protected_distance);
-			close_dy += (boid.getY() - other_boid.getY()) * (1 - other_boid_distance / protected_distance);
+			close_dx += (boid.getX() - other_boid.getX()) * (1 - other_boid_distance_sq / protected_distance_sq);
+			close_dy += (boid.getY() - other_boid.getY()) * (1 - other_boid_distance_sq / protected_distance_sq);
 		}
 	}
 
@@ -111,16 +111,16 @@ void BoidFlock::applyAlignmentLogic(Boid& boid, float& new_x_vel, float& new_y_v
 	float x_vel_avg = 0;
 	float y_vel_avg = 0;
 	float num_of_boid_neibords = 0;
-	float other_boid_distance;
+	float other_boid_distance_sq;
 
 	for (Boid& other_boid : boids) {
 		if (&boid == &other_boid) continue;
 
-		other_boid_distance = std::hypotf( // i calculate this TWO times per other_boid, per frame. Is there a way to only calculate it once ? 
-			boid.getX() - other_boid.getX(),
-			boid.getY() - other_boid.getY());
+		other_boid_distance_sq =
+			std::pow(boid.getX() - other_boid.getX(), 2) +
+			std::pow(boid.getY() - other_boid.getY(), 2);
 
-		if (visible_distance >= other_boid_distance) {
+		if (visible_distance_sq >= other_boid_distance_sq) {
 
 			// Alignment
 			x_vel_avg += other_boid.getXVelocity();
@@ -144,15 +144,16 @@ void BoidFlock::applyCohesionLogic(Boid& boid, float& new_x_vel, float& new_y_ve
 	float x_pos_avg = 0;
 	float y_pos_avg = 0;
 	float num_of_boid_neibords = 0;
+	float other_boid_distance_sq;
 
 	for (Boid& other_boid : boids) {
 		if (&boid == &other_boid) continue;
 
-		float other_boid_distance = std::hypotf( // i calculate this TWO times per other_boid, per frame. Is there a way to only calculate it once ? 
-			boid.getX() - other_boid.getX(),
-			boid.getY() - other_boid.getY());
+		other_boid_distance_sq =
+			std::pow(boid.getX() - other_boid.getX(), 2) +
+			std::pow(boid.getY() - other_boid.getY(), 2);
 
-		if (visible_distance >= other_boid_distance) {
+		if (visible_distance_sq >= other_boid_distance_sq) {
 
 			num_of_boid_neibords++;
 
