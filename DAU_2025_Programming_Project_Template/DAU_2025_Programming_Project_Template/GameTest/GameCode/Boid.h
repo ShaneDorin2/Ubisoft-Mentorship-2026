@@ -16,6 +16,8 @@ public : // constructors
 	Boid(const Boid&) = delete;
 	Boid& operator=(const Boid&) = delete;
 
+	Boid(Boid&&) noexcept = default; // required for vector<Boid>.reserve()
+
 public : // logic
 	
 	void updateVelocity(float new_x, float new_y) { setVelocity(new_x, new_y); }

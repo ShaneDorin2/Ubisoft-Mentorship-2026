@@ -22,6 +22,8 @@ protected : // constructor
 	Movable(const Movable&) = delete;
 	Movable& operator=(const Movable&) = delete;
 
+	Movable(Movable&&) noexcept = default; // required for vector<Boid>.reserve()
+
 protected : // logic
 
 	void setVelocity(float new_x, float new_y);

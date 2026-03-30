@@ -17,6 +17,8 @@ protected: //contructors
 	Positionable(const Positionable&) = delete;
 	Positionable& operator=(const Positionable&) = delete;
 
+	Positionable(Positionable&&) noexcept = default; // required for vector<Boid>.reserve()
+
 protected: //logic
 
 	void setPosition(float new_x, float new_y);

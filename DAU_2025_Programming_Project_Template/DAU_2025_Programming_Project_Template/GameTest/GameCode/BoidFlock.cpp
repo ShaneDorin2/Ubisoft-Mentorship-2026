@@ -31,13 +31,13 @@ BoidFlock::BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float
 	std::uniform_real_distribution<float> randomNoneZeroFloat(0.1f, 1.0f);
 
 	// populate the flock. 
-	boids.reserve(num_of_boids); // THIS IS CALLING "Boid(const Boid&) = delete;", CAUSING A CRASH !
+	boids.reserve(num_of_boids); 
 	for (int i =0; i < num_of_boids ; i++) {
 
 		start_x_velocity = randomNoneZeroFloat(gen);
 		start_y_velocity = randomNoneZeroFloat(gen);
 
-		boids.emplace_back( // THIS IS CALLING "Boid(const Boid&) = delete;", CAUSING A CRASH !
+		boids.emplace_back( 
 			start_x_pos, start_y_pos,
 			new CSimpleSprite(file_path_const_char, 1, 1), 
 			start_x_velocity, start_y_velocity
