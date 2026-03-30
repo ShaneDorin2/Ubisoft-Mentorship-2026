@@ -81,6 +81,13 @@ void BoidFlock::draw()
 	}
 }
 
+void BoidFlock::drawGizmos()
+{
+	for (Boid& boid : boids) {
+		boid.drawGizmo();
+	}
+}
+
 void BoidFlock::applySeparationLogic(Boid& boid, float& new_x_vel, float& new_y_vel)
 {
 	float close_dy = 0;

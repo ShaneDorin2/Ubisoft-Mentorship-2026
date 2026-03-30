@@ -79,6 +79,7 @@ void Render()
 	player->draw();
 
 	boid_flock->draw();
+	boid_flock->drawGizmos();
 
 	for (Collider2D* collider : sColliderLibrary::getInstance()->getLibrary()) {
 		collider->drawGizmo();

@@ -24,6 +24,7 @@ public : // logic
 	void updatePosition(float& delta_time) override;
 
 	void draw() { sprite->Draw(); } // TODO : make this into an Interface for all draw-able objects. //Drawable
+	void drawGizmo();
 
 public : // Get logic
 
@@ -34,6 +35,9 @@ public : // Get logic
 	float getYVelocity() { return y_velocity; }
 
 	void setSpeed(float new_speed);
+
+private : // logic
+	void drawDirectionLine(float line_len);
 
 private : // data
 	std::unique_ptr<CSimpleSprite> sprite;

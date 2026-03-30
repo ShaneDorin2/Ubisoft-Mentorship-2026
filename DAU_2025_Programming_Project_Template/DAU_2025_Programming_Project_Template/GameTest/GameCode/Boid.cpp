@@ -24,8 +24,22 @@ void Boid::updatePosition(float& delta_time)
 	sprite->SetPosition(x_pos, y_pos);
 }
 
+void Boid::drawGizmo()
+{
+	drawDirectionLine(100);
+}
+
 void Boid::setSpeed(float new_speed)
 {
 	assert(new_speed >= 0);
 	Movable::setSpeed(new_speed);
+}
+
+void Boid::drawDirectionLine(float line_len)
+{
+	App::DrawLine(
+		x_pos, y_pos, 
+		x_pos + x_velocity *line_len, 
+		y_pos + y_velocity *line_len, 
+		0, 0, 1);
 }

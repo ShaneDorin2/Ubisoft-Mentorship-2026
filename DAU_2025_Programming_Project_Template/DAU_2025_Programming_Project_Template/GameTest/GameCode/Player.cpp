@@ -78,10 +78,10 @@ void Player::updateLogic() {
 	// collition
 	std::vector<Collider2D*> collitions = collider->getAllCollitions();
 	if (collitions.empty() == false) {
-		softAssert(false, "colliding !");
+		/*softAssert(false, "colliding !");*/
 	}
 	else {
-		softAssert(false, "NOT colliding !");
+		/*softAssert(false, "NOT colliding !");*/
 	}
 }
 

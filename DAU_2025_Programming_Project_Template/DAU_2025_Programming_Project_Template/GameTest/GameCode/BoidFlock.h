@@ -26,6 +26,7 @@ public: // logic
 
 	void updateBoidLogic(float delta_time);
 	void draw();
+	void drawGizmos();
 
 private: // logic
 
