@@ -98,8 +98,8 @@ void BoidFlock::applySeparationLogic(Boid& boid, float& new_x_vel, float& new_y_
 		if (&boid == &other_boid) continue;
 
 		other_boid_distance_sq = 
-			std::pow(boid.getX() - other_boid.getX(), 2) + 
-			std::pow(boid.getY() - other_boid.getY(), 2);
+			std::powf(boid.getX() - other_boid.getX(), 2) + 
+			std::powf(boid.getY() - other_boid.getY(), 2);
 
 		if (protected_distance_sq >= other_boid_distance_sq) {
 

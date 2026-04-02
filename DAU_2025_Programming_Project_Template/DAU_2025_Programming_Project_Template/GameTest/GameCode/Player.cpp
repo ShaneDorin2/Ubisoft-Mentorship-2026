@@ -2,12 +2,12 @@
 #include "Player.h"
 #include <memory>
 #include "EngineCode\EventManager.h"
-#include "EngineCode\Collider2D.h"
+#include "EngineCode\CircleCollider2D.h"
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
 	Movable(start_x_pos, start_y_pos), 
-	collider(new Collider2D(CIRCLE, 100, true, this))
+	collider(new CircleCollider2D(100, true, this))
 {
 	assert(sprite != nullptr);
 	sprite->SetPosition(x_pos, y_pos);

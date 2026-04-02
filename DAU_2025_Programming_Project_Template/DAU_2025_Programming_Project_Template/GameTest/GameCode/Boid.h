@@ -2,7 +2,7 @@
 
 #include "EngineCode\Movable.h"
 #include "app\app.h"
-#include "EngineCode\Collider2D.h"
+#include "EngineCode\CircleCollider2D.h"
 #include <memory> // unique_ptr<>  <-- Knows that it will always be the SOLE 'owner' of the referensed data. If the pointer is destroyed, the data is automatically destroyed as well (so no need for manual destruction.). 
 
 class Boid : public Movable
@@ -41,7 +41,7 @@ private : // logic
 
 private : // data
 	std::unique_ptr<CSimpleSprite> sprite;
-	std::unique_ptr<Collider2D> collider;
+	std::unique_ptr<CircleCollider2D> collider;
 };
 
 // so far, this is VERY similar to the Player class. 

@@ -14,6 +14,7 @@
 #include "EngineCode\InputManager.h"
 #include "GameCode\BoidFlock.h"
 #include "EngineCode\ColliderLibrary.h"
+#include "EngineCode\CircleCollider2D.h"
 
 //------------------------------------------------------------------------
 // My data
@@ -22,7 +23,7 @@ sEventManager* event_manager; // singleton
 Player* player;
 BoidFlock* boid_flock;
 
-Collider2D* test_collider;
+CircleCollider2D* test_collider;
 
 //------------------------------------------------------------------------
 // Called before first update. Do any initial setup here.
@@ -43,7 +44,7 @@ void Init()
 	//TO DO: innit all scene elements here. 
 
 	boid_flock = new BoidFlock(40, "PlaceHolderImage.png", APP_VIRTUAL_WIDTH/2, APP_VIRTUAL_HEIGHT / 2);
-	test_collider = new Collider2D(CIRCLE, 100, true, nullptr, 100, 100); // TO DO : Create a 2nd constructor where I don't have to set parent to nullptr. 
+	test_collider = new CircleCollider2D(100, true, nullptr, 100, 100); // TO DO : Create a 2nd constructor where I don't have to set parent to nullptr. 
 }
 
 //------------------------------------------------------------------------

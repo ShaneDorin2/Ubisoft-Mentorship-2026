@@ -185,6 +185,7 @@
     <ClInclude Include="App\SimpleSound.h" />
     <ClInclude Include="App\SimpleSprite.h" />
     <ClInclude Include="Assert.h" />
+    <ClInclude Include="EngineCode\CircleCollider2D.h" />
     <ClInclude Include="GameCode\Boid.h" />
     <ClInclude Include="GameCode\BoidFlock.h" />
     <ClInclude Include="EngineCode\Collider2D.h" />
@@ -205,6 +206,7 @@
     <ClCompile Include="App\SimpleController.cpp" />
     <ClCompile Include="App\SimpleSound.cpp" />
     <ClCompile Include="App\SimpleSprite.cpp" />
+    <ClCompile Include="EngineCode\CircleCollider2D.cpp" />
     <ClCompile Include="GameCode\Boid.cpp" />
     <ClCompile Include="GameCode\BoidFlock.cpp" />
     <ClCompile Include="EngineCode\Collider2D.cpp" />

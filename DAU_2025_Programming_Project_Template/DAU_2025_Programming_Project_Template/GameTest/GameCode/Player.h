@@ -2,8 +2,9 @@
 #include "app\app.h"
 #include "functional"
 #include "EngineCode\Movable.h"
-#include "EngineCode\Collider2D.h"
 #include <memory>
+
+class CircleCollider2D;
 
 /*
 * This class handles the player character's Position, Movement and Appearance. 
@@ -46,7 +47,7 @@ private: // logic
 private: // memeory
 
 	std::unique_ptr<CSimpleSprite> sprite; 
-	std::unique_ptr<Collider2D> collider;
+	std::unique_ptr<CircleCollider2D> collider;
 
 private: // input memory
 
