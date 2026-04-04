@@ -2,7 +2,7 @@
 #include "Player.h"
 #include <memory>
 #include "EngineCode\EventManager.h"
-#include "EngineCode\CircleCollider2D.h"
+#include "EngineCode\CollisionDetection.h"
 
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
@@ -76,12 +76,12 @@ void Player::updateLogic() {
 	in_direction_input_y = 0;
 
 	// collition
-	std::vector<Collider2D*> collitions = collider->getAllCollitions();
+	std::vector<Collider2D*> collitions = CollisionDetection::getAllCollitions(*collider);
 	if (collitions.empty() == false) {
-		/*softAssert(false, "colliding !");*/
+		softAssert(false, "colliding !");
 	}
 	else {
-		/*softAssert(false, "NOT colliding !");*/
+		softAssert(false, "NOT colliding !");
 	}
 }
 

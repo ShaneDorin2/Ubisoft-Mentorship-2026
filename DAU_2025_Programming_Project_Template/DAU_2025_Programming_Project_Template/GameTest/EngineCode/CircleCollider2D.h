@@ -18,7 +18,6 @@ public : // logic
 
 public : // override logic
 
-	bool isCollidingWith(Collider2D* other_collider) override;
 	void drawGizmo() override;
 
 private : // logic

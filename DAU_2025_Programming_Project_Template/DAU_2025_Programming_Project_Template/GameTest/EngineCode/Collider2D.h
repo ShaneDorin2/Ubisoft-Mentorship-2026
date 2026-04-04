@@ -2,10 +2,10 @@
 #include "Positionable.h"
 #include <vector>
 
-
 enum eColliderShape //MUST MATCH SUB-CLASS TYPE
 {
-	CIRCLE
+	CIRCLE,
+	RECTANGLE
 };
 
 class Collider2D
@@ -13,14 +13,13 @@ class Collider2D
 public: // logic
 
 	void setActive(bool is_active);
+	const bool& getActive() { return is_active; }
 	const float& getX() { return has_parent ? parent->getXPos() : x_pos; }
 	const float& getY() { return has_parent ? parent->getYPos() : y_pos; }
 	const eColliderShape& getShape() { return shape; }
-	std::vector<Collider2D*> getAllCollitions();
 
 public: // virtual logic
 
-	virtual bool isCollidingWith(Collider2D* other_collider) = 0;
 	virtual void drawGizmo() = 0;
 
 protected: // constructor

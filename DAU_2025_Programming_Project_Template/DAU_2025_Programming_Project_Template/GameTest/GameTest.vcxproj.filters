@@ -31,6 +31,7 @@
     <ClCompile Include="GameCode\Player.cpp" />
     <ClCompile Include="EngineCode\Positionable.cpp" />
     <ClCompile Include="EngineCode\CircleCollider2D.cpp" />
+    <ClCompile Include="EngineCode\RectangleCollider2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -70,6 +71,8 @@
     <ClInclude Include="GameCode\Player.h" />
     <ClInclude Include="EngineCode\Positionable.h" />
     <ClInclude Include="EngineCode\CircleCollider2D.h" />
+    <ClInclude Include="EngineCode\RectangleCollider2D.h" />
+    <ClInclude Include="EngineCode\CollisionDetection.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">

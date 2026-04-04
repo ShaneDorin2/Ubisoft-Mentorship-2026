@@ -12,33 +12,6 @@ CircleCollider2D::CircleCollider2D(float radius, bool is_trigger, Positionable* 
 CircleCollider2D::~CircleCollider2D()
 {}
 
-bool CircleCollider2D::isCollidingWith(Collider2D * other_collider)
-{
-    CircleCollider2D* other_circle_collider;
-    switch (other_collider->getShape())
-    {
-    case CIRCLE:
-
-        other_circle_collider = static_cast<CircleCollider2D*>(other_collider);
-
-        return (
-            // combined radus' squared
-            pow(radius + other_circle_collider->getRadius(), 2) >
-
-            //squared distance
-            pow(getX() - other_circle_collider->getX(), 2) +
-            pow(getY() - other_circle_collider->getY(), 2)
-            );
-
-        break;
-
-    default:
-        assert(false) // collider must match an available collider type
-        break;
-    }
-    return false;
-}
-
 void CircleCollider2D::drawGizmo()
 {
     assert(getShape() == CIRCLE); // other shapes are not yet supported. 
