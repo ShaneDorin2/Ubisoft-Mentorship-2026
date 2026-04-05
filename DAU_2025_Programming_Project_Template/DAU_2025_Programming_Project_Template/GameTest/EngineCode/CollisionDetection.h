@@ -52,7 +52,7 @@ namespace CollisionDetection
 		return (
 			// distance_sq
 			powf(closestX - collider_1->getX(), 2) + 
-			powf(closestY - collider_2->getY(), 2)
+			powf(closestY - collider_1->getY(), 2)
 			< 
 			// radius_sq
 			pow(collider_1->getRadius(), 2)

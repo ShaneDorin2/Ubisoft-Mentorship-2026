@@ -23,7 +23,7 @@ public: // override logic
 
 private: // logic
 
-	void DrawSquare(float x_center, float y_center, float width, float hight, int num_of_sides); //TO DO, move this to another file where it can be used more widely.
+	void DrawSquare(float x_center, float y_center, float width, float hight); //TO DO, move this to another file where it can be used more widely.
 
 private: // data
 

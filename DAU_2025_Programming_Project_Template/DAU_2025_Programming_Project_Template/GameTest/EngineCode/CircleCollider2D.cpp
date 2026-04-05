@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "CircleCollider2D.h"
-//#include "App/AppSettings.h" // for pi, for drawCircle
 #include "App/app.h" // for DrawLine()
 
 
@@ -14,8 +13,6 @@ CircleCollider2D::~CircleCollider2D()
 
 void CircleCollider2D::drawGizmo()
 {
-    assert(getShape() == CIRCLE); // other shapes are not yet supported. 
-
     drawCircle(getX(), getY(), radius, 15);
 }
 

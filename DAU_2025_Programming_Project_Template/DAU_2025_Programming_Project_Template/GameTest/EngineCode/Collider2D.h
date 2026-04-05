@@ -1,6 +1,7 @@
 #pragma once
 #include "Positionable.h"
 #include <vector>
+#include <optional> // for has_value() and std::optional<>
 
 enum eColliderShape //MUST MATCH SUB-CLASS TYPE
 {
@@ -24,7 +25,7 @@ public: // virtual logic
 
 protected: // constructor
 
-	Collider2D(eColliderShape shape, bool is_trigger = true, Positionable* parent = nullptr, float x_pos = NULL, float y_pos = NULL);
+	Collider2D(eColliderShape shape, bool is_trigger = true, Positionable* parent = nullptr, std::optional<float> x_pos = NULL, std::optional<float> y_pos = NULL);
 	~Collider2D();
 
 	// "rule of threes"
