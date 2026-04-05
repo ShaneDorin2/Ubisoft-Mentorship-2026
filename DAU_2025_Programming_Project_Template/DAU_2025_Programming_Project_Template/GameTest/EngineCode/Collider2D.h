@@ -15,6 +15,7 @@ public: // logic
 
 	void setActive(bool is_active);
 	const bool& getActive() { return is_active; }
+	const bool& getTrigger() { return is_trigger; }
 	const float& getX() { return has_parent ? parent->getXPos() : x_pos; }
 	const float& getY() { return has_parent ? parent->getYPos() : y_pos; }
 	const eColliderShape& getShape() { return shape; }
@@ -40,7 +41,7 @@ private: // data
 	float y_pos;
 
 	eColliderShape shape; //32
-	bool is_trigger; // 8
+	bool is_trigger; // 8			// if a collider is trigger, it will not be found by collider checks seeking non-trigger (rigid) colliders. But it CAN still search for rigid colliders. 
 	bool has_parent; // 8
 	bool is_active = true; // 8
 	

@@ -60,7 +60,7 @@ namespace CollisionDetection
 	}
 	bool compareColliders(RectangleCollider2D* collider_1, CircleCollider2D* collider_2) { return compareColliders(collider_2, collider_1); }
 
-	std::vector<Collider2D*> getAllCollitions(Collider2D& collider)
+	std::vector<Collider2D*> getAllCollitions(Collider2D& collider, bool of_type_trigger)
 	{
 		std::vector<Collider2D*> return_vector;
 
@@ -73,6 +73,7 @@ namespace CollisionDetection
 
 		for (Collider2D* other_collider : sColliderLibrary::getInstance()->getLibrary()) {
 			if (&collider == other_collider) continue;
+			if (other_collider->getTrigger() != of_type_trigger) continue;
 
 			// I am embarrassed by this 2D switch case but I can't think of any better way to do this. 
 			switch (collider.getShape())

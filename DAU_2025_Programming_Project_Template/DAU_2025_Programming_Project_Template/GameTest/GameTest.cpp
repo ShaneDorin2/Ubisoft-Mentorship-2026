@@ -39,12 +39,12 @@ void Init()
 	sColliderLibrary::createInstance(); // createInstance must be called ONCE in the function.  
 
 	// My player code
-	player = new Player(400.0f, 400.0f, placeHolderImage);
+	player = new Player(0.f, 0.f, placeHolderImage);
 
 	//TO DO: innit all scene elements here. 
 
 	boid_flock = new BoidFlock(40, "PlaceHolderImage.png", APP_VIRTUAL_WIDTH/2, APP_VIRTUAL_HEIGHT / 2);
-	test_collider = new RectangleCollider2D(100, 100, true, nullptr, APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2); // TO DO : Create a 2nd constructor where I don't have to set parent to nullptr. 
+	test_collider = new RectangleCollider2D(100, 100, false, nullptr, APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2); // TO DO : Create a 2nd constructor where I don't have to set parent to nullptr. 
 }
 
 //------------------------------------------------------------------------

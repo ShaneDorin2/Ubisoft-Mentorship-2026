@@ -77,8 +77,8 @@ void Player::updateLogic() {
 	in_direction_input_y = 0;
 
 	// collition
-	std::vector<Collider2D*> collitions = CollisionDetection::getAllCollitions(*collider);
-	if (collitions.empty() == false) {
+	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*collider, true);
+	if (collisions.empty() == false) {
 		softAssert(false, "colliding !");
 	}
 	else {
@@ -88,7 +88,16 @@ void Player::updateLogic() {
 
 void Player::updatePosition(float& delta_time)
 {
+	float old_x = x_pos;
+	float old_y = y_pos;
 	Movable::updatePosition(delta_time);
 
-	sprite->SetPosition(x_pos, y_pos); 
+	// check for rigid collisions
+	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*collider, false);
+	if (collisions.empty() == false) {
+		x_pos = old_x;
+		y_pos = old_y;
+	}
+
+	sprite->SetPosition(x_pos, y_pos);
 }
