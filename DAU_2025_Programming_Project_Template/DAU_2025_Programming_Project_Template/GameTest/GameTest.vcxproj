@@ -198,6 +198,7 @@
     <ClInclude Include="GameCode\Player.h" />
     <ClInclude Include="EngineCode\Positionable.h" />
     <ClInclude Include="EngineCode\RectangleCollider2D.h" />
+    <ClInclude Include="SceneMember.h" />
     <ClInclude Include="stb_image\stb_image.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -220,6 +221,7 @@
     <ClCompile Include="GameCode\Player.cpp" />
     <ClCompile Include="EngineCode\Positionable.cpp" />
     <ClCompile Include="EngineCode\RectangleCollider2D.cpp" />
+    <ClCompile Include="SceneMember.cpp" />
     <ClCompile Include="stb_image\stb_image.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
