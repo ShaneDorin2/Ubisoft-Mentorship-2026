@@ -32,7 +32,8 @@
     <ClCompile Include="EngineCode\Positionable.cpp" />
     <ClCompile Include="EngineCode\CircleCollider2D.cpp" />
     <ClCompile Include="EngineCode\RectangleCollider2D.cpp" />
-    <ClCompile Include="SceneMember.cpp" />
+    <ClCompile Include="EngineCode\SceneMember.cpp" />
+    <ClCompile Include="GameCode\WallTile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -74,7 +75,8 @@
     <ClInclude Include="EngineCode\CircleCollider2D.h" />
     <ClInclude Include="EngineCode\RectangleCollider2D.h" />
     <ClInclude Include="EngineCode\CollisionDetection.h" />
-    <ClInclude Include="SceneMember.h" />
+    <ClInclude Include="EngineCode\SceneMember.h" />
+    <ClInclude Include="GameCode\WallTile.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">

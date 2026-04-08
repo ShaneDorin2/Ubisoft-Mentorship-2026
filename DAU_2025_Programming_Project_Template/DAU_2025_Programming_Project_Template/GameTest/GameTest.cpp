@@ -13,7 +13,7 @@
 #include "EngineCode\EventManager.h"
 #include "EngineCode\InputManager.h"
 #include "GameCode\BoidFlock.h"
-#include "EngineCode\RectangleCollider2D.h"
+#include "GameCode\WallTile.h"
 #include "EngineCode\ColliderLibrary.h"
 
 //------------------------------------------------------------------------
@@ -23,7 +23,7 @@ sEventManager* event_manager; // singleton
 Player* player;
 BoidFlock* boid_flock;
 
-RectangleCollider2D* test_collider;
+WallTile* wall_collider;
 
 //------------------------------------------------------------------------
 // Called before first update. Do any initial setup here.
@@ -44,7 +44,7 @@ void Init()
 	//TO DO: innit all scene elements here. 
 
 	boid_flock = new BoidFlock(40, "PlaceHolderImage.png", APP_VIRTUAL_WIDTH/2, APP_VIRTUAL_HEIGHT / 2);
-	test_collider = new RectangleCollider2D(100, 100, false, nullptr, APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2); // TO DO : Create a 2nd constructor where I don't have to set parent to nullptr. 
+	wall_collider = new WallTile(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
 }
 
 //------------------------------------------------------------------------
@@ -96,7 +96,7 @@ void Shutdown()
 
 	delete player; // player MUST be destroyed befor eventManager to satisfy assert(). 
 	delete boid_flock;
-	delete test_collider;
+	delete wall_collider;
 	sEventManager::destroyInstance();
 	sColliderLibrary::destroyInstance();
 

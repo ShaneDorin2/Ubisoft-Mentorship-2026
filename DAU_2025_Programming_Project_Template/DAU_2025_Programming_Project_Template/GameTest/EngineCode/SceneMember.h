@@ -9,10 +9,13 @@
 class SceneMember
 {
 public: // virtual logic
-	virtual SceneMember sceneCreateInstance(float x_pos, float y_pos) = 0;
+	//virtual std::unique_ptr <SceneMember> sceneCreateInstance(float x_pos, float y_pos) = 0; 
+	// // would like it if this worked, but I can't make static virtual functions. I also can't return an abstract class. 
+	// // Also no virtual constructors. [cries] I will just need to TRUST that all SceneMembers have a public constructor. 
+
 	virtual void sceneUpdateLogic(float delta_time) = 0;
 	virtual void sceneDraw() = 0;
-	virtual void sceneDrawGizmo() = 0;
+	virtual void sceneDrawGizmos() = 0;
 
 public: // logic
 	bool scene_is_active = true;
