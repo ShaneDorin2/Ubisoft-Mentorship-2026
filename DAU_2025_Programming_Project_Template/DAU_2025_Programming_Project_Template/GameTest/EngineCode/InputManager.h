@@ -9,7 +9,7 @@
 *
 */
 
-static class InputManager
+class InputManager
 {
 public:
 	static void processUserInput();

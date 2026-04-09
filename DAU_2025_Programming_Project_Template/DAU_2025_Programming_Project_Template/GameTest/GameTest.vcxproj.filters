@@ -34,6 +34,7 @@
     <ClCompile Include="EngineCode\RectangleCollider2D.cpp" />
     <ClCompile Include="EngineCode\SceneMember.cpp" />
     <ClCompile Include="GameCode\WallTile.cpp" />
+    <ClCompile Include="EngineCode\Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -77,6 +78,7 @@
     <ClInclude Include="EngineCode\CollisionDetection.h" />
     <ClInclude Include="EngineCode\SceneMember.h" />
     <ClInclude Include="GameCode\WallTile.h" />
+    <ClInclude Include="EngineCode\Scene.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">
