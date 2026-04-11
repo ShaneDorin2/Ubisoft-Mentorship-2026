@@ -32,8 +32,8 @@ void Init()
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
 	sColliderLibrary::createInstance(); // createInstance must be called ONCE in the function.  
 
-	testScene = new Scene();
-	testScene->addMember<WallTile>(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
+	testScene = new Scene(".\\TestData\\SceneFile.txt");
+	//testScene->addMember<WallTile>(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
 }
 
 //------------------------------------------------------------------------

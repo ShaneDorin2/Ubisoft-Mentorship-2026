@@ -1,13 +1,15 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <string>
 class SceneMember;
 
 class Scene
 {
 public: // constructors
 
-	Scene(); // TODO: add filepath and/or 2D string parameter. 
+	Scene(); 
+	Scene(std::string file_path);  
 	~Scene();
 
 	// "rule of threes"
@@ -35,4 +37,19 @@ private: // data
 
 	std::vector<std::unique_ptr<SceneMember>> member_library;
 };
+
+/*
+
+wwwwwwwwww
+w........w
+w........w
+w........w
+w........w
+w........w
+w........w
+w........w
+w........w
+wwwwwwwwww
+
+*/
 

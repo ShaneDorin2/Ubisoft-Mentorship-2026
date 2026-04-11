@@ -1,10 +1,23 @@
 #include "stdafx.h"
 #include "Scene.h"
 #include "EngineCode/SceneMember.h"
+#include <fstream>
+#include <string>
 
 Scene::Scene()
 {
 	// add all sceneMembers into member_library
+}
+
+Scene::Scene(std::string file_path)
+{
+	std::ifstream scene_file(file_path);
+
+	std::string line;
+
+	while (std::getline(scene_file, line)) {
+		OutputDebugStringA(line.c_str());
+	}
 }
 
 Scene::~Scene()
