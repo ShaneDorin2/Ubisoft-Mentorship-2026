@@ -13,7 +13,7 @@
 #include "EngineCode\EventManager.h" // to create instance here.
 #include "EngineCode\InputManager.h"
 //#include "GameCode\BoidFlock.h"
-//#include "GameCode\WallTile.h"
+#include "GameCode\WallTile.h"
 #include "EngineCode\ColliderLibrary.h" // to create instance here. 
 #include "EngineCode\Scene.h"
 
@@ -50,6 +50,7 @@ void Init()
 	//wall_collider = std::make_unique<WallTile>(WallTile(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2));
 
 	testScene = new Scene();
+	testScene->addMember<WallTile>(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
 }
 
 //------------------------------------------------------------------------

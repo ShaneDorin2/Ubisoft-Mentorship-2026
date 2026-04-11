@@ -19,10 +19,20 @@ public: // logic
 	void updateLogic(float delta_time);
 	void draw();
 	void drawGizmos();
-	void addMember(std::unique_ptr <SceneMember> new_member, float pos_x, float pos_y);
 
-public: // data
+public: // template
 
-	std::vector< std::unique_ptr<SceneMember>> member_library;
+	template<typename T, typename... Args>
+	void addMember(Args&&... args)
+	{
+		//assert(std::is_base_of<SceneMember, T>::value)
+
+		auto obj = std::make_unique<T>(std::forward<Args>(args)...); // what does "forwards" and "..." mean in this context ? 
+		member_library.push_back(std::move(obj));
+	}
+
+private: // data
+
+	std::vector<std::unique_ptr<SceneMember>> member_library;
 };
 

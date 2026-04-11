@@ -36,7 +36,3 @@ void Scene::drawGizmos()
 	}
 }
 
-void Scene::addMember(std::unique_ptr<SceneMember> new_member, float pos_x, float pos_y)
-{
-	member_library.push_back(std::move(new_member));
-}

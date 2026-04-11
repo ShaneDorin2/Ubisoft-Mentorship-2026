@@ -5,11 +5,11 @@
 
 class RectangleCollider2D;
 
-class WallTile: Positionable, SceneMember
+class WallTile: Positionable, public SceneMember
 {
 public: // contructor
 
-	WallTile(float x_pos, float y_pos, float size = 100);
+	WallTile(float x_pos = 0, float y_pos = 0, float size = 100);
 	~WallTile();
 
 	// rule of "threes"
