@@ -9,23 +9,18 @@
 #include "app\app.h"
 //------------------------------------------------------------------------
 #include <iostream>
-//#include "GameCode\Player.h"
+
+// singltons to create instances
 #include "EngineCode\EventManager.h" // to create instance here.
-#include "EngineCode\InputManager.h"
-//#include "GameCode\BoidFlock.h"
-#include "GameCode\WallTile.h"
 #include "EngineCode\ColliderLibrary.h" // to create instance here. 
+
+#include "EngineCode\InputManager.h"
+
 #include "EngineCode\Scene.h"
+#include "GameCode\WallTile.h"
 
 //------------------------------------------------------------------------
 // My data
-CSimpleSprite* placeHolderImage;
-sEventManager* event_manager; // singleton
-//Player* player;
-//BoidFlock* boid_flock;
-
-//std::unique_ptr<WallTile> wall_collider;
-
 Scene* testScene;
 
 //------------------------------------------------------------------------
@@ -33,21 +28,9 @@ Scene* testScene;
 //------------------------------------------------------------------------
 void Init()
 {
-	// My sprite code
-	placeHolderImage = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1);
-	placeHolderImage->SetScale(1.0f);
-
 	// My event manager code 
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
 	sColliderLibrary::createInstance(); // createInstance must be called ONCE in the function.  
-
-	// My player code
-	//player = new Player(0.f, 0.f, placeHolderImage);
-
-	//TO DO: innit all scene elements here. 
-
-	//boid_flock = new BoidFlock(40, "PlaceHolderImage.png", APP_VIRTUAL_WIDTH/2, APP_VIRTUAL_HEIGHT / 2);
-	//wall_collider = std::make_unique<WallTile>(WallTile(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2));
 
 	testScene = new Scene();
 	testScene->addMember<WallTile>(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
@@ -62,19 +45,6 @@ void Update(float deltaTime)
 
 	InputManager::processUserInput();
 
-	// apply input data
-	//player->updateLogic();
-
-	// update player position
-	//player->updatePosition(deltaTime);
-
-	//boid_flock->updateBoidLogic(deltaTime);
-
-	/* 
-	Should I combine these two "player->" functions into one player->tick(deltaTime) function, 
-	or is it best to keep UPDATE LOGIC and UPDATE POSITION seperate ?
-	*/
-
 	testScene->updateLogic(deltaTime);
 }
 
@@ -84,16 +54,6 @@ void Update(float deltaTime)
 //------------------------------------------------------------------------
 void Render()
 {
-
-	//player->draw();
-
-	//boid_flock->draw();
-	//boid_flock->drawGizmos();
-
-	//for (Collider2D* collider : sColliderLibrary::getInstance()->getLibrary()) {
-	//	collider->drawGizmo();
-	//}
-
 	testScene->draw();
 	testScene->drawGizmos();
 }
@@ -105,9 +65,6 @@ void Render()
 void Shutdown()
 {
 
-	//delete player; // player MUST be destroyed befor eventManager to satisfy assert(). 
-	//delete boid_flock;
-	//delete wall_collider;
 	delete testScene;
 
 	sEventManager::destroyInstance();
