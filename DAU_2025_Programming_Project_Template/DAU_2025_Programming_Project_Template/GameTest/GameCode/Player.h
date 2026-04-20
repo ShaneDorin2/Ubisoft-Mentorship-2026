@@ -2,6 +2,7 @@
 #include "app\app.h"
 #include "functional"
 #include "EngineCode\Movable.h"
+#include "EngineCode\SceneMember.h"
 #include <memory>
 
 class CircleCollider2D;
@@ -18,11 +19,11 @@ class CircleCollider2D;
 *	- Draw a Gizmo indicating the point coordinate of the Player. (Use App::DrawLine())
 */
 
-class Player : public Movable
+class Player : public Movable, public SceneMember
 {
 public: // constructor
 
-	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr);
+	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1));
 	~Player();
 
 	// "rule of threes"
@@ -35,6 +36,13 @@ public: // logic
 	void updatePosition(float& delta_time) override;
 
 	void draw() { sprite->Draw(); } // TODO : make this into an Interface for all draw-able objects. //Drawable
+
+public: // override logic
+
+	// SceneMember logic
+	void sceneUpdateLogic(float delta_time) override;
+	void sceneDraw() override;
+	void sceneDrawGizmos() override;
 
 private: // logic
 

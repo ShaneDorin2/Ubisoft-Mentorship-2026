@@ -3,6 +3,10 @@
 #include "EngineCode/SceneMember.h"
 #include <fstream>
 #include <string>
+#include <assert.h>
+#include <GameCode/WallTile.h>
+#include <App/AppSettings.h>
+#include <GameCode/Player.h>
 
 Scene::Scene()
 {
@@ -12,11 +16,21 @@ Scene::Scene()
 Scene::Scene(std::string file_path)
 {
 	std::ifstream scene_file(file_path);
-
 	std::string line;
 
+	int row_position =0;
+	int col_position;
+
 	while (std::getline(scene_file, line)) {
-		OutputDebugStringA(line.c_str());
+
+		col_position = 0;
+		
+		for (char letter : line) {
+
+			detectTypeAndAdd(letter, 6-row_position, col_position);
+			col_position++;
+		}
+		row_position++;
 	}
 }
 
@@ -46,6 +60,24 @@ void Scene::drawGizmos()
 	for (std::unique_ptr<SceneMember>& member : member_library) {
 		if (!member->scene_is_active) continue;
 		member->sceneDrawGizmos();
+	}
+}
+
+void Scene::detectTypeAndAdd(char character, int row, int col)
+{
+	switch (character)
+	{
+	case '.': //nothing
+		break;
+	case 'w':
+		addMember<WallTile>(col*100 + 50, row*100 + 50);
+		break;	
+	case 'p':
+		addMember<Player>(col*100 + 50, row*100 + 50);
+		break;
+	default:
+		softAssert(false, "An unknown character was found in the SceneFile.");
+		break;
 	}
 }
 

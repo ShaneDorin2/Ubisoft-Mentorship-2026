@@ -7,10 +7,10 @@
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
 	Movable(start_x_pos, start_y_pos), 
-	collider(new CircleCollider2D(100, true, this))
+	collider(new CircleCollider2D(50, true, this))
 {
 	assert(sprite != nullptr);
-	sprite->SetPosition(x_pos, y_pos);
+	sprite->SetScale(0.5);
 	
 	setSpeed(0.5);
 
@@ -78,12 +78,12 @@ void Player::updateLogic() {
 
 	// collition
 	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*collider, true);
-	if (collisions.empty() == false) {
-		softAssert(false, "colliding !");
-	}
-	else {
-		softAssert(false, "NOT colliding !");
-	}
+	//if (collisions.empty() == false) {
+	//	softAssert(false, "colliding !");
+	//}
+	//else {
+	//	softAssert(false, "NOT colliding !");
+	//}
 }
 
 void Player::updatePosition(float& delta_time)
@@ -100,4 +100,20 @@ void Player::updatePosition(float& delta_time)
 	}
 
 	sprite->SetPosition(x_pos, y_pos);
+}
+
+void Player::sceneUpdateLogic(float delta_time)
+{
+	updateLogic();
+	updatePosition(delta_time);
+}
+
+void Player::sceneDraw()
+{
+	draw();
+}
+
+void Player::sceneDrawGizmos()
+{
+	collider->drawGizmo();
 }

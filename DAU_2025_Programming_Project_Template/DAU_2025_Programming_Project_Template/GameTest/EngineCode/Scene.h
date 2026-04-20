@@ -33,6 +33,10 @@ public: // template
 		member_library.push_back(std::move(obj));
 	}
 
+private: // logic
+
+	void detectTypeAndAdd(char character, int row, int col);
+
 private: // data
 
 	std::vector<std::unique_ptr<SceneMember>> member_library;
@@ -41,9 +45,6 @@ private: // data
 /*
 
 wwwwwwwwww
-w........w
-w........w
-w........w
 w........w
 w........w
 w........w
