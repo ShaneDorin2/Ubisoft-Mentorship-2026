@@ -7,12 +7,12 @@
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
 	Movable(start_x_pos, start_y_pos), 
-	collider(new CircleCollider2D(50, true, this))
+	collider(new CircleCollider2D(5, true, this))
 {
 	assert(sprite != nullptr);
 	sprite->SetScale(0.5);
 	
-	setSpeed(0.5);
+	setSpeed(0.2);
 
 	// subscribing to events
 	sEventManager* event_manager = sEventManager::getInstance();
@@ -99,7 +99,7 @@ void Player::updatePosition(float& delta_time)
 		y_pos = old_y;
 	}
 
-	sprite->SetPosition(x_pos, y_pos);
+	sprite->SetPosition(x_pos + sprite_x_offset, y_pos + sprite_y_offset);
 }
 
 void Player::sceneUpdateLogic(float delta_time)

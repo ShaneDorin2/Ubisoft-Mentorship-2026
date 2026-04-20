@@ -21,7 +21,8 @@
 
 //------------------------------------------------------------------------
 // My data
-Scene* testScene;
+Scene* test_scene;
+CSimpleSprite* background_image;
 
 //------------------------------------------------------------------------
 // Called before first update. Do any initial setup here.
@@ -32,7 +33,12 @@ void Init()
 	sEventManager::createInstance(); // createInstance must be called ONCE in the function.  
 	sColliderLibrary::createInstance(); // createInstance must be called ONCE in the function.  
 
-	testScene = new Scene(".\\TestData\\SceneFile.txt");
+	test_scene = new Scene(".\\TestData\\CourtYardScene.txt");
+
+	//background_image = App::CreateSprite(".\\TestData\\mapGrid.png", 1, 1);
+	background_image = App::CreateSprite(".\\TestData\\map.png", 1, 1);
+	background_image->SetPosition(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
+	background_image->SetScale(0.4);
 }
 
 //------------------------------------------------------------------------
@@ -44,7 +50,7 @@ void Update(float deltaTime)
 
 	InputManager::processUserInput();
 
-	testScene->updateLogic(deltaTime);
+	test_scene->updateLogic(deltaTime);
 }
 
 //------------------------------------------------------------------------
@@ -53,8 +59,9 @@ void Update(float deltaTime)
 //------------------------------------------------------------------------
 void Render()
 {
-	testScene->draw();
-	testScene->drawGizmos();
+	background_image->Draw();
+	test_scene->draw();
+	//test_scene->drawGizmos();
 }
 
 //------------------------------------------------------------------------
@@ -64,7 +71,8 @@ void Render()
 void Shutdown()
 {
 
-	delete testScene;
+	delete test_scene;
+	delete background_image;
 
 	sEventManager::destroyInstance();
 	sColliderLibrary::destroyInstance();

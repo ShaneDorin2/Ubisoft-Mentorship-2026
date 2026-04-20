@@ -27,7 +27,7 @@ Scene::Scene(std::string file_path)
 		
 		for (char letter : line) {
 
-			detectTypeAndAdd(letter, 6-row_position, col_position);
+			detectTypeAndAdd(letter, 32-row_position, col_position);
 			col_position++;
 		}
 		row_position++;
@@ -70,10 +70,10 @@ void Scene::detectTypeAndAdd(char character, int row, int col)
 	case '.': //nothing
 		break;
 	case 'w':
-		addMember<WallTile>(col*100 + 50, row*100 + 50);
-		break;	
+		addMember<WallTile>(col*15 + 61, row* 15 + 120); // TO DO store these numbers somewhere (create the consept of scene size?)
+		break;	 
 	case 'p':
-		addMember<Player>(col*100 + 50, row*100 + 50);
+		addMember<Player>(col* 15 + 61, row* 15 + 120);
 		break;
 	default:
 		softAssert(false, "An unknown character was found in the SceneFile.");

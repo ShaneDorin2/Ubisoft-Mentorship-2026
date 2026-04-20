@@ -23,7 +23,7 @@ class Player : public Movable, public SceneMember
 {
 public: // constructor
 
-	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = App::CreateSprite(".\\TestData\\PlaceHolderImage.png", 1, 1));
+	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = App::CreateSprite(".\\TestData\\angel_sprite_sheet.png", 4, 1));
 	~Player();
 
 	// "rule of threes"
@@ -56,6 +56,9 @@ private: // memeory
 
 	std::unique_ptr<CSimpleSprite> sprite; 
 	std::unique_ptr<CircleCollider2D> collider;
+
+	float sprite_x_offset =0;
+	float sprite_y_offset =15;
 
 private: // input memory
 
