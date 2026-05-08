@@ -35,6 +35,7 @@
     <ClCompile Include="EngineCode\SceneMember.cpp" />
     <ClCompile Include="GameCode\WallTile.cpp" />
     <ClCompile Include="EngineCode\Scene.cpp" />
+    <ClCompile Include="EngineCode\RayCastCollider2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -79,6 +80,7 @@
     <ClInclude Include="EngineCode\SceneMember.h" />
     <ClInclude Include="GameCode\WallTile.h" />
     <ClInclude Include="EngineCode\Scene.h" />
+    <ClInclude Include="EngineCode\RayCastCollider2D.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">

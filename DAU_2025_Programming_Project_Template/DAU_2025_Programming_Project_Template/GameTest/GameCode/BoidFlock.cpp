@@ -39,14 +39,33 @@ BoidFlock::BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float
 
 		boids.emplace_back( 
 			start_x_pos, start_y_pos,
-			new CSimpleSprite(file_path_const_char, 1, 1), 
+			new CSimpleSprite(file_path_const_char, 4, 1), 
 			start_x_velocity, start_y_velocity
 		);
 	}
 }
 
+BoidFlock::BoidFlock(float start_x_pos, float start_y_pos, int num_of_boids, std::string sprite_sheet_file_path):
+	BoidFlock(num_of_boids, sprite_sheet_file_path, start_x_pos, start_y_pos)
+{}
+
 BoidFlock::~BoidFlock()
 {}
+
+void BoidFlock::sceneUpdateLogic(float delta_time)
+{
+	updateBoidLogic(delta_time);
+}
+
+void BoidFlock::sceneDraw()
+{
+	draw();
+}
+
+void BoidFlock::sceneDrawGizmos()
+{
+	drawGizmos();
+}
 
 // Based off of "https://vanhunteradams.com/Pico/Animal_Movement/Boids-algorithm.html". 
 void BoidFlock::updateBoidLogic(float delta_time)

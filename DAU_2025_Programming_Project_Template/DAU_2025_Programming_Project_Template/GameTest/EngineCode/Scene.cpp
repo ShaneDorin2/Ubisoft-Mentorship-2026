@@ -7,6 +7,7 @@
 #include <GameCode/WallTile.h>
 #include <App/AppSettings.h>
 #include <GameCode/Player.h>
+#include <GameCode/BoidFlock.h>
 
 Scene::Scene()
 {
@@ -36,7 +37,6 @@ Scene::Scene(std::string file_path)
 
 Scene::~Scene()
 {
-	// destroy all objects in sceneMember
 }
 
 void Scene::updateLogic(float delta_time)
@@ -75,6 +75,18 @@ void Scene::detectTypeAndAdd(char character, int row, int col)
 	case 'p':
 		addMember<Player>(col* 15 + 61, row* 15 + 120);
 		break;
+	case '1':
+	case '2':
+	case '3':
+	case '4':
+	case '5':
+	case '6':
+	case '7':
+	case '8':
+	case '9':
+		addMember<BoidFlock>(col * 15 + 61, row * 15 + 120, character - '0');
+		break;
+
 	default:
 		softAssert(false, "An unknown character was found in the SceneFile.");
 		break;

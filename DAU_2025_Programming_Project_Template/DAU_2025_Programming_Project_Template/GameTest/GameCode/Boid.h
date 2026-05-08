@@ -3,6 +3,7 @@
 #include "EngineCode\Movable.h"
 #include "app\app.h"
 #include "EngineCode\CircleCollider2D.h"
+#include "EngineCode\RayCastCollider2D.h"
 #include <memory> // unique_ptr<>  <-- Knows that it will always be the SOLE 'owner' of the referensed data. If the pointer is destroyed, the data is automatically destroyed as well (so no need for manual destruction.). 
 
 class Boid : public Movable
@@ -20,7 +21,7 @@ public : // constructors
 
 public : // logic
 	
-	void updateVelocity(float new_x, float new_y) { setVelocity(new_x, new_y); }
+	void updateVelocity(float new_x, float new_y);
 	void updatePosition(float& delta_time) override;
 
 	void draw() { sprite->Draw(); } // TODO : make this into an Interface for all draw-able objects. //Drawable
@@ -41,7 +42,8 @@ private : // logic
 
 private : // data
 	std::unique_ptr<CSimpleSprite> sprite;
-	std::unique_ptr<CircleCollider2D> collider;
+	std::unique_ptr<CircleCollider2D> circle_collider;
+	std::unique_ptr<RayCastCollider2D> raycast_collider;
 };
 
 // so far, this is VERY similar to the Player class. 

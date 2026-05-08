@@ -6,7 +6,8 @@
 enum eColliderShape //MUST MATCH SUB-CLASS TYPE
 {
 	CIRCLE,
-	RECTANGLE
+	RECTANGLE,
+	RAYCAST
 };
 
 class Collider2D

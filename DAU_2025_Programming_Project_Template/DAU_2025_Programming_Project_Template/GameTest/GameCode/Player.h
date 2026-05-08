@@ -52,7 +52,7 @@ private: // logic
 	void onRightInput() { in_direction_input_x += 1; }
 	void onLeftInput() { in_direction_input_x -= 1; }
 
-private: // memeory
+private: // data
 
 	std::unique_ptr<CSimpleSprite> sprite; 
 	std::unique_ptr<CircleCollider2D> collider;

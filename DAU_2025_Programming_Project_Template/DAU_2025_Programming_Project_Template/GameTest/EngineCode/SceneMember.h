@@ -13,6 +13,7 @@ public: // virtual logic
 	// // would like it if this worked, but I can't make static virtual functions. I also can't return an abstract class. 
 	// // Also no virtual constructors. [cries] I will just need to TRUST that all SceneMembers have a public constructor. 
 
+	virtual ~SceneMember() = default;
 	virtual void sceneUpdateLogic(float delta_time) = 0;
 	virtual void sceneDraw() = 0;
 	virtual void sceneDrawGizmos() = 0;

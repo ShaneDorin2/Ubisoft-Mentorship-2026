@@ -2,6 +2,7 @@
 #include <vector>
 #include "Boid.h"
 #include <string>
+#include "EngineCode\SceneMember.h"
 
 
 /* BoidFlock manages a group of Boid objects that 'perseive' each other. 
@@ -10,17 +11,25 @@
 * Multiple BoidFlocks can exist in a scene but a Boid from one flock will not 'perceive' boids from another flock. 
 */
 
-class BoidFlock
+class BoidFlock : public SceneMember
 {
 public: // constructors
 
 	BoidFlock(std::vector<Boid>&& boids);
 	BoidFlock(int num_of_boids, std::string sprite_sheet_file_path, float start_x_pos = 0, float start_y_pos = 0);
+	BoidFlock(float start_x_pos = 0, float start_y_pos = 0, int num_of_boids = 10, std::string sprite_sheet_file_path = "angel_sprite_sheet.png");
 	~BoidFlock();
 
 	// "rule of threes"
 	BoidFlock(const BoidFlock&) = delete;
 	BoidFlock& operator=(const BoidFlock&) = delete;
+
+public: // override logic
+
+	// SceneMember logic
+	void sceneUpdateLogic(float delta_time) override;
+	void sceneDraw() override;
+	void sceneDrawGizmos() override;
 
 public: // logic
 
@@ -36,6 +45,7 @@ private: // logic
 	void applyBorderAvoidanceLogic(Boid& boid, float& new_x_vel, float& new_y_vel);
 
 private: // data
+
 	std::vector<Boid> boids;
 
 	float protected_distance = 40;

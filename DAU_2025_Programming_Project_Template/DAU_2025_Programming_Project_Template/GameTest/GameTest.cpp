@@ -61,7 +61,7 @@ void Render()
 {
 	background_image->Draw();
 	test_scene->draw();
-	//test_scene->drawGizmos();
+	test_scene->drawGizmos();
 }
 
 //------------------------------------------------------------------------
