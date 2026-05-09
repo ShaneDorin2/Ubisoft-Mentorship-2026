@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Boid.h"
+#include <EngineCode/CollisionDetection.h>
 
 Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float start_x_velocity, float start_y_velocity) :
 	Movable(start_x_pos, start_y_pos),
@@ -21,8 +22,17 @@ Boid::~Boid()
 
 void Boid::updateVelocity(float new_x, float new_y)
 {
-	setVelocity(new_x, new_y);
 	raycast_collider->setDirection(new_x, new_y);
+	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*raycast_collider, false);
+	if (collisions.empty() == false) {
+		softAssert(false, "colliding !");
+	}
+	else {
+		softAssert(false, "NOT colliding !");
+	}
+
+
+	setVelocity(new_x, new_y);
 }
 
 void Boid::updatePosition(float& delta_time)

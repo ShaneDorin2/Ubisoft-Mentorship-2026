@@ -12,7 +12,7 @@ Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) 
 	assert(sprite != nullptr);
 	sprite->SetScale(0.5);
 	
-	setSpeed(0.2);
+	setSpeed(0.2f);
 
 	// subscribing to events
 	sEventManager* event_manager = sEventManager::getInstance();
