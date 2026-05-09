@@ -18,11 +18,11 @@ public : // logic
 
 public : // override logic
 
-	void drawGizmo() override;
+	void drawGizmo(float r = 1, float g = 0, float b = 0) override;
 
 private : // logic
 	
-	void drawCircle(float x_center, float y_center, float radius, int num_of_sides); //TO DO, move this to another file where it can be used more widely.
+	void drawCircle(float x_center, float y_center, float radius, int num_of_sides, float r = 1, float g = 0, float b = 0); //TO DO, move this to another file where it can be used more widely.
 
 private : // data
 

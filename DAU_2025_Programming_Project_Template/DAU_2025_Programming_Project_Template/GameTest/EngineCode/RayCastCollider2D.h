@@ -23,7 +23,7 @@ public: // logic
 
 public: // override logic
 
-	void drawGizmo() override;
+	void drawGizmo(float r = 1, float g = 0, float b = 0) override;
 
 private: 
 

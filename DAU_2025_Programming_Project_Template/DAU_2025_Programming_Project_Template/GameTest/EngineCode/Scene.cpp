@@ -84,7 +84,7 @@ void Scene::detectTypeAndAdd(char character, int row, int col)
 	case '7':
 	case '8':
 	case '9':
-		addMember<BoidFlock>(col * 15 + 61, row * 15 + 120, character - '0');
+		addMember<BoidFlock>(col * 15 + 61, row * 15 + 120, (character - '0') * 10);
 		break;
 
 	default:

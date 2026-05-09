@@ -43,7 +43,9 @@ private : // logic
 private : // data
 	std::unique_ptr<CSimpleSprite> sprite;
 	std::unique_ptr<CircleCollider2D> circle_collider;
-	std::unique_ptr<RayCastCollider2D> raycast_collider;
+
+	std::unique_ptr<RayCastCollider2D> raycast_collider_12;
+	std::unique_ptr<RayCastCollider2D> raycast_collider_3;
 };
 
 // so far, this is VERY similar to the Player class. 

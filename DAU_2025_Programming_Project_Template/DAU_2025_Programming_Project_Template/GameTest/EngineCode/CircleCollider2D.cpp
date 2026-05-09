@@ -11,12 +11,12 @@ CircleCollider2D::CircleCollider2D(float radius, bool is_trigger, Positionable* 
 CircleCollider2D::~CircleCollider2D()
 {}
 
-void CircleCollider2D::drawGizmo()
+void CircleCollider2D::drawGizmo(float r, float g, float b)
 {
-    drawCircle(getX(), getY(), radius, 15);
+    drawCircle(getX(), getY(), radius, 15, r, g, b);
 }
 
-void CircleCollider2D::drawCircle(float x_center, float y_center, float radius, int num_of_sides)
+void CircleCollider2D::drawCircle(float x_center, float y_center, float radius, int num_of_sides, float r, float g, float b)
 {
     assert(num_of_sides > 0);
 
@@ -33,7 +33,7 @@ void CircleCollider2D::drawCircle(float x_center, float y_center, float radius, 
         float x2 = x_center + cosf(angle2) * radius;
         float y2 = y_center + sinf(angle2) * radius;
 
-        App::DrawLine(x1, y1, x2, y2, 1, 0, 0); // white by default. 
+        App::DrawLine(x1, y1, x2, y2, r, g, b); // white by default. 
     }
     App::DrawLine(x_center, y_center, x_center + radius, y_center, 1, 0, 0);
 }

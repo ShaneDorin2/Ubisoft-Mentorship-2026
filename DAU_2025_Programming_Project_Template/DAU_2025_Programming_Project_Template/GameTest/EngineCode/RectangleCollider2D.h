@@ -19,11 +19,11 @@ public: // logic
 
 public: // override logic
 
-	void drawGizmo() override;
+	void drawGizmo(float r = 1, float g = 0, float b = 0) override;
 
 private: // logic
 
-	void DrawSquare(float x_center, float y_center, float width, float hight); //TO DO, move this to another file where it can be used more widely.
+	void DrawSquare(float x_center, float y_center, float width, float hight, float r = 1, float g = 0, float b = 0); //TO DO, move this to another file where it can be used more widely.
 
 private: // data
 

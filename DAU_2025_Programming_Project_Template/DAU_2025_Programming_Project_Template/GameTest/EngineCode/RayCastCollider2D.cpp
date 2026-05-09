@@ -12,11 +12,11 @@ RayCastCollider2D::RayCastCollider2D(float length, float direction_x, float dire
 RayCastCollider2D::~RayCastCollider2D()
 {}
 
-void RayCastCollider2D::drawGizmo()
+void RayCastCollider2D::drawGizmo(float r, float g, float b)
 {
 	float end_point_x = getX() + length * direction_x;
 	float end_point_y = getY() + length * direction_y;
-	App::DrawLine(getX(), getY(), end_point_x, end_point_y, 1, 0, 0);
+	App::DrawLine(getX(), getY(), end_point_x, end_point_y, r, g, b);
 
 }
 

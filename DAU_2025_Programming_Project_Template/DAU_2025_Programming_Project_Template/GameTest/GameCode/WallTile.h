@@ -9,7 +9,7 @@ class WallTile: Positionable, public SceneMember
 {
 public: // contructor
 
-	WallTile(float x_pos = 0, float y_pos = 0, float size = 13);
+	WallTile(float x_pos = 0, float y_pos = 0, float size = 15);
 	~WallTile();
 
 	// rule of "threes"

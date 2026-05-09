@@ -6,7 +6,8 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	Movable(start_x_pos, start_y_pos),
 	sprite(sprite),
 	circle_collider(new CircleCollider2D(10, true, this)),
-	raycast_collider(new RayCastCollider2D(100, 1, 1, true, this))
+	raycast_collider_12(new RayCastCollider2D(20, 1, 1, true, this)),
+	raycast_collider_3(new RayCastCollider2D(20, 1, 1, true, this))
 {
 	assert(sprite != nullptr);
 	
@@ -22,15 +23,25 @@ Boid::~Boid()
 
 void Boid::updateVelocity(float new_x, float new_y)
 {
-	raycast_collider->setDirection(new_x, new_y);
-	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*raycast_collider, false);
+	float wall_avoidance_weight = 0.5;
+	
+	raycast_collider_12->setDirection(new_x, new_y);
+	raycast_collider_3->setDirection(new_y, -new_x);
+
+	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*raycast_collider_12, false);
 	if (collisions.empty() == false) {
 		softAssert(false, "colliding !");
+		collisions = CollisionDetection::getAllCollitions(*raycast_collider_3, false);
+		if (collisions.empty() == false) {
+			new_x -= new_y * wall_avoidance_weight;
+			new_y += new_x * wall_avoidance_weight;
+		}
+		else 
+		{
+			new_x += new_y * wall_avoidance_weight;
+			new_y -= new_x * wall_avoidance_weight;
+		}
 	}
-	else {
-		softAssert(false, "NOT colliding !");
-	}
-
 
 	setVelocity(new_x, new_y);
 }
@@ -43,20 +54,12 @@ void Boid::updatePosition(float& delta_time)
 
 void Boid::drawGizmo()
 {
-	raycast_collider->drawGizmo();
+	raycast_collider_12->drawGizmo();
+	raycast_collider_3->drawGizmo(0, 1, 0);
 }
 
 void Boid::setSpeed(float new_speed)
 {
 	assert(new_speed >= 0);
 	Movable::setSpeed(new_speed);
-}
-
-void Boid::drawDirectionLine(float line_len)
-{
-	App::DrawLine(
-		x_pos, y_pos, 
-		x_pos + x_velocity *line_len, 
-		y_pos + y_velocity *line_len, 
-		0, 0, 1);
 }

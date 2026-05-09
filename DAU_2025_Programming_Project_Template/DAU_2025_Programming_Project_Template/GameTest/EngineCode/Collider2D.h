@@ -23,7 +23,7 @@ public: // logic
 
 public: // virtual logic
 
-	virtual void drawGizmo() = 0;
+	virtual void drawGizmo(float r = 1, float g = 0, float b = 0) = 0;
 
 protected: // constructor
 
