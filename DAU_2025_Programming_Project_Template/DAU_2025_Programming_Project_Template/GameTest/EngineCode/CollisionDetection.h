@@ -149,7 +149,7 @@ namespace CollisionDetection
 			float tx1 = (left - ray_start_x) / dx;
 			float tx2 = (right - ray_start_x) / dx;
 
-			float txMin = std::min(6.f, 5.f);
+			float txMin = std::min(tx1, tx2);
 			float txMax = std::max(tx1, tx2);
 
 			tMin = std::max(tMin, txMin);
@@ -216,7 +216,14 @@ namespace CollisionDetection
 						return_vector.push_back(other_collider);
 					break;
 
-				default: break;
+				case RAYCAST:
+					if (compareColliders(static_cast<CircleCollider2D*>(&collider), static_cast<RayCastCollider2D*>(other_collider)))
+						return_vector.push_back(other_collider);
+					break;
+
+				default: 
+					assert(false, "Collider comparason is not supported between these 2 collider types");
+					break;
 				}
 				break;
 
@@ -233,28 +240,45 @@ namespace CollisionDetection
 						return_vector.push_back(other_collider);
 					break;
 
-				default: break;
+				case RAYCAST:
+					if (compareColliders(static_cast<RectangleCollider2D*>(&collider), static_cast<RayCastCollider2D*>(other_collider)))
+						return_vector.push_back(other_collider);
+					break;
+
+				default:
+					assert(false, "Collider comparason is not supported between these 2 collider types");
+					break;
 				}
 				break;
 
-			//case RAYCAST:
-			//	switch (other_collider->getShape())
-			//	{
-			//	case CIRCLE:
-			//		if (compareColliders(static_cast<RectangleCollider2D*>(&collider), static_cast<CircleCollider2D*>(other_collider)))
-			//			return_vector.push_back(other_collider);
-			//		break;
+			case RAYCAST:
+				switch (other_collider->getShape())
+				{
+				case CIRCLE:
+					if (compareColliders(static_cast<RayCastCollider2D*>(&collider), static_cast<CircleCollider2D*>(other_collider)))
+						return_vector.push_back(other_collider);
+					break;
 
-			//	case RECTANGLE:
-			//		if (compareColliders(static_cast<RectangleCollider2D*>(&collider), static_cast<RectangleCollider2D*>(other_collider)))
-			//			return_vector.push_back(other_collider);
-			//		break;
+				case RECTANGLE:
+					if (compareColliders(static_cast<RayCastCollider2D*>(&collider), static_cast<RectangleCollider2D*>(other_collider)))
+						return_vector.push_back(other_collider);
+					break;				
+				
+				// // THERE IS NO " compareColliders(RAYCAST, RAYCAST) "
+				//case RAYCAST:
+				//	if (compareColliders(static_cast<RayCastCollider2D*>(&collider), static_cast<RayCastCollider2D*>(other_collider)))
+				//		return_vector.push_back(other_collider);
+				//	break;
 
-			//	default: break;
-			//	}
-			//	break;
+				default: 
+					assert(false, "Collider comparason is not supported between these 2 collider types");
+					break;
+				}
+				break;
 
-			default: break;
+			default:
+				assert(false, "Collider comparason is not supported between these 2 collider types");
+				break;
 			}
 		}
 		return return_vector;
