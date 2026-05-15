@@ -178,6 +178,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameCode\AngelDetectionZone.h" />
     <ClInclude Include="App\app.h" />
     <ClInclude Include="App\AppSettings.h" />
     <ClInclude Include="App\main.h" />
@@ -207,6 +208,7 @@
     <ClInclude Include="GameCode\WallTile.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameCode\AngelDetectionZone.cpp" />
     <ClCompile Include="App\app.cpp" />
     <ClCompile Include="App\main.cpp" />
     <ClCompile Include="App\SimpleController.cpp" />

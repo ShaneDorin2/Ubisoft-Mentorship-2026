@@ -65,19 +65,13 @@ namespace CollisionDetection
 	}
 	inline bool compareColliders(RectangleCollider2D* collider_1, CircleCollider2D* collider_2) { return compareColliders(collider_2, collider_1); }
 
+
 	// source : https://www.geeksforgeeks.org/dsa/check-line-touches-intersects-circle/
 	inline bool compareColliders(RayCastCollider2D* collider_1, CircleCollider2D* collider_2) {
 		float ray_start_x = collider_1->getX();
 		float ray_start_y = collider_1->getY();
 		float ray_end_x = ray_start_x + collider_1->getDirectionX() * collider_1->getLength();
 		float ray_end_y = ray_start_y + collider_1->getDirectionY() * collider_1->getLength();
-
-
-		//float a_closes_raycast_x = std::clamp(collider_2->getX(), ray_start_x, ray_end_x);
-		//float a_closes_raycast_y = ray_start_y + collider_1->getDirectionY() * (a_closes_raycast_x / ray_end_x);
-
-		//float b_closes_raycast_y = std::clamp(collider_2->getY(), ray_start_y, ray_end_y);
-		//float b_closes_raycast_x = ray_start_x + collider_1->getDirectionX() * (a_closes_raycast_y / ray_end_y);
 
 		// distance of ray
 		float dx = ray_end_x - ray_start_x;
@@ -87,7 +81,7 @@ namespace CollisionDetection
 		float start_center_dx = collider_2->getX() - ray_start_x;
 		float start_center_dy = collider_2->getY() - ray_start_y;
 
-		float ray_length_sq = collider_1->getLength();
+		float ray_length_sq = pow(collider_1->getLength(), 2);
 
 		float closest_part_of_ray = (start_center_dx * dx + start_center_dy * dy) / ray_length_sq;
 
@@ -102,25 +96,9 @@ namespace CollisionDetection
 		float distance_sq = powf(closest_x - collider_1->getX(), 2) + powf(closest_y - collider_1->getY(), 2);
 
 		return (powf(collider_2->getRadius(), 2) > distance_sq);
-
-
-
-
-		//// line information. 
-		//float a = collider_1->getDirectionX();
-		//float b = collider_1->getDirectionY();
-		//float c = -(a * collider_1->getX()) - (b * collider_1->getY());
-
-		//// circle center position
-		//float x = collider_2->getX();
-		//float y = collider_2->getY();
-
-		//// find distance between circle center and nearest point on raycast. 
-		//float distance = (abs(a * x + b * y + c)) / sqrt(a * a + b * b);
-
-		//return (collider_2->getRadius() >= distance);
 	} 
 	inline bool compareColliders(CircleCollider2D* collider_1, RayCastCollider2D* collider_2) { return compareColliders(collider_2, collider_1); }
+
 
 	// "slab method"
 	// source: https://www.youtube.com/shorts/GqwUHXvQ7oA

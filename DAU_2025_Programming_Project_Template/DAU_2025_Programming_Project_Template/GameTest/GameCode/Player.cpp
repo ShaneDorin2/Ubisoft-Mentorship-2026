@@ -7,7 +7,8 @@
 Player::Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr) :
 	sprite(sprite_ptr), 
 	Movable(start_x_pos, start_y_pos), 
-	collider(new CircleCollider2D(5, true, this))
+	collider(new CircleCollider2D(5, true, this)), 
+	angel_detection_zone(new AngelDetectionZone(this, /*radius*/ 30))
 {
 	assert(sprite != nullptr);
 	sprite->SetScale(0.5);
@@ -84,6 +85,8 @@ void Player::updateLogic() {
 	//else {
 	//	softAssert(false, "NOT colliding !");
 	//}
+
+	angel_detection_zone->checkForNumOfAngelsInZone();
 }
 
 void Player::updatePosition(float& delta_time)
@@ -116,4 +119,5 @@ void Player::sceneDraw()
 void Player::sceneDrawGizmos()
 {
 	collider->drawGizmo();
+	angel_detection_zone->drawGizmo(0, 1, 0);
 }

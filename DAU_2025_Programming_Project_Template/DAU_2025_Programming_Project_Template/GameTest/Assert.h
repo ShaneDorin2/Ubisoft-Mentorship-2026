@@ -24,8 +24,12 @@ DebugBreak();
 if (!(test)) \
 OutputDebugStringA("ASSERT FAILED ------------ >      " message "\n") \
 
+#define debugOutput(message) \
+OutputDebugStringA((std::string("DEBUG OUTPUT  ------------ >      ") + message + "\n").c_str()) \
+
 #else
 #define assert(test)
 #define softAssert(test, message)
+#define debugOutput(message)
 
 #endif

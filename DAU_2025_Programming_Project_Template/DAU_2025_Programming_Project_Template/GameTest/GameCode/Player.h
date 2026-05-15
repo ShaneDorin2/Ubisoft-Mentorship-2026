@@ -4,6 +4,7 @@
 #include "EngineCode\Movable.h"
 #include "EngineCode\SceneMember.h"
 #include <memory>
+#include "AngelDetectionZone.h"
 
 class CircleCollider2D;
 
@@ -23,7 +24,7 @@ class Player : public Movable, public SceneMember
 {
 public: // constructor
 
-	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = App::CreateSprite(".\\TestData\\angel_sprite_sheet.png", 4, 1));
+	Player(float start_x_pos, float start_y_pos, CSimpleSprite* sprite_ptr = App::CreateSprite(".\\TestData\\demon_sprite_sheet.png", 4, 1));
 	~Player();
 
 	// "rule of threes"
@@ -56,6 +57,7 @@ private: // data
 
 	std::unique_ptr<CSimpleSprite> sprite; 
 	std::unique_ptr<CircleCollider2D> collider;
+	std::unique_ptr<AngelDetectionZone> angel_detection_zone;
 
 	float sprite_x_offset =0;
 	float sprite_y_offset =15;

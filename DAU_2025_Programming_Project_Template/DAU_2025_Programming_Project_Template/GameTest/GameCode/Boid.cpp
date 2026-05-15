@@ -30,7 +30,6 @@ void Boid::updateVelocity(float new_x, float new_y)
 
 	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*raycast_collider_12, false);
 	if (collisions.empty() == false) {
-		softAssert(false, "colliding !");
 		collisions = CollisionDetection::getAllCollitions(*raycast_collider_3, false);
 		if (collisions.empty() == false) {
 			new_x -= new_y * wall_avoidance_weight;

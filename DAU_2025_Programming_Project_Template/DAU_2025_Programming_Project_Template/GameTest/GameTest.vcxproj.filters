@@ -36,6 +36,7 @@
     <ClCompile Include="GameCode\WallTile.cpp" />
     <ClCompile Include="EngineCode\Scene.cpp" />
     <ClCompile Include="EngineCode\RayCastCollider2D.cpp" />
+    <ClCompile Include="GameCode\AngelDetectionZone.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -81,6 +82,7 @@
     <ClInclude Include="GameCode\WallTile.h" />
     <ClInclude Include="EngineCode\Scene.h" />
     <ClInclude Include="EngineCode\RayCastCollider2D.h" />
+    <ClInclude Include="GameCode\AngelDetectionZone.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="NextAPI">
