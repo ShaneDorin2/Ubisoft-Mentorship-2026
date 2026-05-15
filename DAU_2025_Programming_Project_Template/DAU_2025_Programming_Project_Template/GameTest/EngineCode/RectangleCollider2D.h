@@ -5,7 +5,7 @@ class RectangleCollider2D : public Collider2D
 {
 public: // contructor
 
-	RectangleCollider2D(float width, float hight, bool is_trigger = true, Positionable* parent = nullptr, float x_pos = NULL, float y_pos = NULL);
+	RectangleCollider2D(float width, float hight, bool is_trigger = true, Positionable* parent = nullptr, eTag tag = NONE, float x_pos = NULL, float y_pos = NULL);
 	~RectangleCollider2D();
 
 	// rule of "threes"

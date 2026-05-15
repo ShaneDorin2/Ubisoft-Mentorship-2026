@@ -2,11 +2,11 @@
 #include "RayCastCollider2D.h"
 #include "App/app.h" // for DrawLine()
 
-RayCastCollider2D::RayCastCollider2D(float length, float direction_x, float direction_y, bool is_trigger, Positionable* parent, float x_pos, float y_pos):
+RayCastCollider2D::RayCastCollider2D(float length, float direction_x, float direction_y, bool is_trigger, Positionable* parent, eTag tag, float x_pos, float y_pos):
 	length(length), 
 	direction_x(direction_x),
 	direction_y(direction_y),
-	Collider2D(RAYCAST, is_trigger, parent, x_pos, y_pos)
+	Collider2D(RAYCAST, is_trigger, parent, tag, x_pos, y_pos)
 {}
 
 RayCastCollider2D::~RayCastCollider2D()

@@ -6,7 +6,7 @@ class RayCastCollider2D : public Collider2D
 
 public: //contructor
 
-	RayCastCollider2D(float length, float direction_x, float direction_y, bool is_trigger = true, Positionable* parent = nullptr, float x_pos = NULL, float y_pos = NULL);
+	RayCastCollider2D(float length, float direction_x, float direction_y, bool is_trigger = true, Positionable* parent = nullptr, eTag tag = NONE, float x_pos = NULL, float y_pos = NULL);
 	~RayCastCollider2D();
 
 	// rule of "threes"

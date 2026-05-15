@@ -3,9 +3,9 @@
 #include "App/app.h" // for DrawLine()
 
 
-CircleCollider2D::CircleCollider2D(float radius, bool is_trigger, Positionable* parent, float x_pos, float y_pos):
+CircleCollider2D::CircleCollider2D(float radius, bool is_trigger, Positionable* parent, eTag tag, float x_pos, float y_pos):
 	radius(radius), 
-	Collider2D(CIRCLE, is_trigger, parent, x_pos, y_pos)
+	Collider2D(CIRCLE, is_trigger, parent, tag, x_pos, y_pos)
 {}
 
 CircleCollider2D::~CircleCollider2D()

@@ -17,8 +17,8 @@ void Collider2D::setActive(bool new_active_status)
     }
 }
 
-Collider2D::Collider2D(eColliderShape shape, bool is_trigger, Positionable* parent, std::optional<float> x_pos, std::optional<float> y_pos) :
-    shape(shape), is_trigger(is_trigger), parent(parent), x_pos(x_pos.value_or(0.f)), y_pos(y_pos.value_or(0.f))
+Collider2D::Collider2D(eColliderShape shape, bool is_trigger, Positionable* parent, eTag tag, std::optional<float> x_pos, std::optional<float> y_pos) :
+    shape(shape), is_trigger(is_trigger), parent(parent), tag(tag), x_pos(x_pos.value_or(0.f)), y_pos(y_pos.value_or(0.f))
 {
     assert(parent != nullptr || (x_pos.has_value() && y_pos.has_value())); // a collider without a parent MUST be porvided an x,y position. 
 

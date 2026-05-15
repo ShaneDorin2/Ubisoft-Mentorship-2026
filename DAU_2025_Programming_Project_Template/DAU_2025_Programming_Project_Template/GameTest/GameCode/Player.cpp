@@ -79,12 +79,6 @@ void Player::updateLogic() {
 
 	// collition
 	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*collider, true);
-	//if (collisions.empty() == false) {
-	//	softAssert(false, "colliding !");
-	//}
-	//else {
-	//	softAssert(false, "NOT colliding !");
-	//}
 
 	angel_detection_zone->checkForNumOfAngelsInZone();
 }

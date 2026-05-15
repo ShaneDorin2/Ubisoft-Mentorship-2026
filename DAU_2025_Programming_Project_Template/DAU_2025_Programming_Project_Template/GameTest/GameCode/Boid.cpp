@@ -5,7 +5,7 @@
 Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float start_x_velocity, float start_y_velocity) :
 	Movable(start_x_pos, start_y_pos),
 	sprite(sprite),
-	circle_collider(new CircleCollider2D(10, true, this)),
+	circle_collider(new CircleCollider2D(2, true, this, ANGEL)),
 	raycast_collider_12(new RayCastCollider2D(20, 1, 1, true, this)),
 	raycast_collider_3(new RayCastCollider2D(20, 1, 1, true, this))
 {
@@ -15,7 +15,7 @@ Boid::Boid(float start_x_pos, float start_y_pos, CSimpleSprite* sprite, float st
 	Movable::setSpeed(0.08f);
 	sprite->SetScale(0.5f);
 
-	circle_collider->setActive(false);
+	circle_collider->setActive(true);
 }
 
 Boid::~Boid()
@@ -53,6 +53,7 @@ void Boid::updatePosition(float& delta_time)
 
 void Boid::drawGizmo()
 {
+	circle_collider->drawGizmo();
 	raycast_collider_12->drawGizmo();
 	raycast_collider_3->drawGizmo(0, 1, 0);
 }

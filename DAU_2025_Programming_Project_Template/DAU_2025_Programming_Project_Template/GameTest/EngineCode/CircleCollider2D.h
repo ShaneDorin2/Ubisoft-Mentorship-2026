@@ -5,7 +5,7 @@ class CircleCollider2D : public Collider2D
 {
 public : // contructor
 
-	CircleCollider2D(float radius, bool is_trigger = true, Positionable* parent = nullptr, float x_pos = NULL, float y_pos = NULL);
+	CircleCollider2D(float radius, bool is_trigger = true, Positionable* parent = nullptr, eTag tag = NONE, float x_pos = NULL, float y_pos = NULL);
 	~CircleCollider2D();
 
 	// rule of "threes"

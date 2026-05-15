@@ -2,9 +2,9 @@
 #include "RectangleCollider2D.h"
 #include "App/app.h" // for DrawLine()
 
-RectangleCollider2D::RectangleCollider2D(float width, float hight, bool is_trigger, Positionable* parent, float x_pos, float y_pos) :
+RectangleCollider2D::RectangleCollider2D(float width, float hight, bool is_trigger, Positionable* parent, eTag tag, float x_pos, float y_pos) :
 	width(width), hight(hight),
-	Collider2D(RECTANGLE, is_trigger, parent, x_pos, y_pos)
+	Collider2D(RECTANGLE, is_trigger, parent, tag, x_pos, y_pos)
 {}
 
 RectangleCollider2D::~RectangleCollider2D()

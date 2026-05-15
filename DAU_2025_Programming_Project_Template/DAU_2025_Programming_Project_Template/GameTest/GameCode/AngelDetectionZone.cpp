@@ -12,7 +12,7 @@ AngelDetectionZone::~AngelDetectionZone()
 
 void AngelDetectionZone::checkForNumOfAngelsInZone()
 {
-	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*collider, true);
+	std::vector<Collider2D*> collisions = CollisionDetection::getAllCollitions(*collider, true, ANGEL);
 	num_of_angels_in_zone = collisions.size();
 	std::string num = std::to_string(num_of_angels_in_zone);
 	debugOutput(num);

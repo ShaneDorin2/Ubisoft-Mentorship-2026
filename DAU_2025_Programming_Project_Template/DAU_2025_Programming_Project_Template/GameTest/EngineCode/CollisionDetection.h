@@ -162,7 +162,7 @@ namespace CollisionDetection
 
 
 
-	inline std::vector<Collider2D*> getAllCollitions(Collider2D& collider, bool of_type_trigger)
+	inline std::vector<Collider2D*> getAllCollitions(Collider2D& collider, bool of_type_trigger, eTag wantedTag = NONE)
 	{
 		std::vector<Collider2D*> return_vector;
 
@@ -175,7 +175,14 @@ namespace CollisionDetection
 
 		for (Collider2D* other_collider : sColliderLibrary::getInstance()->getLibrary()) {
 			if (&collider == other_collider) continue;
-			if (other_collider->getTrigger() != of_type_trigger) continue;
+			if (wantedTag == NONE) 
+			{
+				if (other_collider->getTrigger() != of_type_trigger) continue;
+			}
+			else 
+			{
+				if (other_collider->getTag() != wantedTag) continue;
+			}
 
 			// I am embarrassed by this 2D switch case but I can't think of any better way to do this. 
 			switch (collider.getShape())

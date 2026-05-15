@@ -4,7 +4,7 @@
 
 WallTile::WallTile(float x_pos, float y_pos, float size) :
     Positionable(x_pos, y_pos),
-    collider(new RectangleCollider2D(size, size, false, this))
+    collider(new RectangleCollider2D(size, size, false, this, WALL))
 {}
 
 WallTile::~WallTile()
