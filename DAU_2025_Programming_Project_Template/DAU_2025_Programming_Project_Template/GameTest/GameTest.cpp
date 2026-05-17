@@ -35,7 +35,7 @@ void Init()
 
 	test_scene = new Scene(".\\TestData\\CourtYardScene.txt");
 
-	//background_image = App::CreateSprite(".\\TestData\\mapGrid.png", 1, 1);
+	//background_image = App::CreateSprite(".\\TestData\\mapGrid.png", 1, 1); // for debugging
 	background_image = App::CreateSprite(".\\TestData\\map.png", 1, 1);
 	background_image->SetPosition(APP_VIRTUAL_WIDTH / 2, APP_VIRTUAL_HEIGHT / 2);
 	background_image->SetScale(0.4);
@@ -47,7 +47,6 @@ void Init()
 //------------------------------------------------------------------------
 void Update(float deltaTime)
 {
-
 	InputManager::processUserInput();
 
 	test_scene->updateLogic(deltaTime);
