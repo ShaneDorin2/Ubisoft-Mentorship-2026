@@ -6,6 +6,7 @@ Mentee: Shane Dorin
 Mentor: Vincent Leclercq
 
 Git repository link: https://github.com/ShaneDorin2/Ubisoft-Mentorship-2026
+Video demonstration: https://youtu.be/2weslaBR6dE 
 
 Project summary: Create a custom game engine using c++ and a template provided by Vincent Leclercq.
 
